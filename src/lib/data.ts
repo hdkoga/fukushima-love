@@ -159,9 +159,11 @@ export function categoryFromNotes(notes: string): string {
 export function cleanSnippet(text: string | undefined | null): string {
   if (!text) return '';
   return text
+    .replace(/(管理者|副管理者|モデレーター|グループエキスパート|トップコントリビューター)/gu, '')
     .replace(/[…\.]{1,3}\s*さらに表示\s*$/u, '')
     .replace(/\s*See more\s*$/i, '')
     .replace(/\s*\.\.\.\s*See More\s*$/i, '')
+    .replace(/[ \t]{2,}/g, ' ')
     .replace(/[\s\u00a0]+$/u, '')
     .trim();
 }
