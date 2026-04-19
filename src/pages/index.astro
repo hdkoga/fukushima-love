@@ -223,21 +223,28 @@ const stats = computeStats(events);
     gap: 0;
   }
   .masthead-text {
-    padding: 1.25rem 0 1rem;
+    padding: 1rem 0 0.75rem;
     flex: 1;
     order: 0;
+    min-width: 0;
+  }
+  .masthead-eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
   }
   .masthead-chars {
     order: 1;
     align-self: flex-end;
     margin-right: -0.5rem;
     flex-shrink: 0;
+    width: 110px;
   }
   .masthead-char {
-    height: 100px;
+    height: 90px;
   }
   .masthead-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    white-space: nowrap;
   }
   .masthead-sub { display: none; }
 }
