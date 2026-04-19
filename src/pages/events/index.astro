@@ -59,8 +59,8 @@ const categories = ['店主が福島出身', '福島料理', 'その他の福島
                   : <div class="event-row-thumb-placeholder" style="background:transparent;"></div>
               }
             </div>
-            <div class="kai" style="align-self:center;">第{e.kai}回</div>
             <div>
+              <div class="kai">第{e.kai}回</div>
               <a class="store" href={`/events/${e.kai}/`}>{e.storeName}</a>
               <span class="link-icons">
                 {e.tabelog && <a class="link-icon" href={e.tabelog} target="_blank" rel="noopener" title="食べログ">食</a>}
