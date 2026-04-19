@@ -158,14 +158,29 @@ export function categoryFromNotes(notes: string): string {
 
 export function cleanSnippet(text: string | undefined | null): string {
   if (!text) return '';
-  return text
+  let s = text;
+
+  // 先頭の投稿者行（名前 + バッジ + 日付）を除去
+  s = s.replace(/^.{0,60}?(?:管理者|グループエキスパート|トップコントリビューター|副管理者|モデレーター).{0,80}?·\s*/u, '');
+
+  // コメント・リアクション以降を切り捨て
+  s = s
+    .replace(/\s*もっと見る[\s\S]*/u, '')
+    .replace(/\s*さらに表示[\s\S]*/u, '')
+    .replace(/\s*\d+件以上[\s\S]*/u, '')
+    .replace(/\s*いいね！[\s\S]*/u, '')
+    .replace(/\s*公開コメントを入力[\s\S]*/u, '')
+    .replace(/\s*See [Mm]ore[\s\S]*/u, '');
+
+  // 残留バッジ語・記号の除去
+  s = s
     .replace(/(管理者|副管理者|モデレーター|グループエキスパート|トップコントリビューター)/gu, '')
-    .replace(/[…\.]{1,3}\s*さらに表示\s*$/u, '')
-    .replace(/\s*See more\s*$/i, '')
-    .replace(/\s*\.\.\.\s*See More\s*$/i, '')
+    .replace(/·/g, '')
     .replace(/[ \t]{2,}/g, ' ')
     .replace(/[\s\u00a0]+$/u, '')
     .trim();
+
+  return s;
 }
 
 export function priceLevelToYen(level: string | null | undefined): string | null {
