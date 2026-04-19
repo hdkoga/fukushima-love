@@ -370,6 +370,7 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
 }
 
 /* ── Event row ────────────────────────────────────────────── */
+#event-list { overflow-x: hidden; }
 .event-row {
   padding: 0.75rem 0.5rem;
   border-bottom: 1px solid var(--color-border);
@@ -379,8 +380,21 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
   align-items: center;
   border-radius: 0;
   transition: background var(--transition);
+  min-width: 0;
 }
+.event-row > * { min-width: 0; }
 .event-row:hover { background: var(--color-surface); }
+@media (max-width: 480px) {
+  .event-row {
+    grid-template-columns: 48px auto 1fr;
+    gap: 0.4rem;
+    padding: 0.6rem 0.25rem;
+  }
+  .event-row-thumb,
+  .event-row-thumb-placeholder { width: 48px; height: 48px; }
+  .thumb-sm { width: 48px; height: 48px; }
+  .link-icons { display: none; }
+}
 
 .event-row-thumb {
   width: 60px;
