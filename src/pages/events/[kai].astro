@@ -1,0 +1,367 @@
+---
+import Base from '../../layouts/Base.astro';
+import EventCard from '../../components/EventCard.astro';
+import { getEnrichedEvents, formatDate, categoryMeta, cleanSnippet, priceLevelToYen } from '../../lib/data';
+import { GOOGLE_MAPS_API_KEY } from '../../lib/sheet';
+
+export async function getStaticPaths() {
+  const events = await getEnrichedEvents();
+  return events.map((e) => ({
+    params: { kai: String(e.kai) },
+    props: { event: e, allEvents: events },
+  }));
+}
+
+const { event, allEvents } = Astro.props;
+const cat = categoryMeta(event.notes);
+const snippet = cleanSnippet(event.post?.text_snippet);
+const priceYen = priceLevelToYen(event.googlePlaceInfo?.price_level);
+const weekdayDescriptions = event.googlePlaceInfo?.opening_hours?.weekday_descriptions ?? [];
+
+// 近隣の過去開催店（ユークリッド距離で近い順に5店）
+const nearby = event.geocode?.lat != null && event.geocode?.lon != null
+  ? allEvents
+      .filter(
+        (e) =>
+          e.kai !== event.kai &&
+          e.geocode?.lat != null &&
+          e.geocode?.lon != null
+      )
+      .map((e) => {
+        const dLat = (e.geocode!.lat as number) - (event.geocode!.lat as number);
+        const dLon = (e.geocode!.lon as number) - (event.geocode!.lon as number);
+        return { e, dist: dLat * dLat + dLon * dLon };
+      })
+      .sort((a, b) => a.dist - b.dist)
+      .slice(0, 5)
+      .map((x) => x.e)
+  : [];
+---
+
+<Base title={`第${event.kai}回 ${event.storeName} | 福島LOVE会`}>
+  <div class="event-hero">
+    <div class="container">
+      <p class="event-hero-kai">第 {event.kai} 回</p>
+      <h1 class="event-hero-name">{event.storeName}</h1>
+      <div class="event-hero-meta">
+        <span>📅 {formatDate(event.date)}</span>
+        {event.address && <span>📍 {event.address}</span>}
+      </div>
+    </div>
+  </div>
+
+  <main class="container" style="padding-top: 1.5rem;">
+    <p style="color: var(--color-sub); font-size: 0.88rem; margin-bottom: 0.5rem;">
+      <a href="/events/">← 開催記録一覧</a>
+    </p>
+
+    {event.notes && (
+      <div class={`fukushima-point ${cat.cssClass}`}>
+        <span class="fukushima-point-badge" style={`--cat-color:${cat.color};`}>
+          <span class="fukushima-point-icon">{cat.icon}</span>
+          <span class="fukushima-point-label">{cat.label}</span>
+        </span>
+        <p class="fukushima-point-text">{event.notes}</p>
+      </div>
+    )}
+
+    {snippet && (
+      <blockquote class="hitokoto">
+        <div class="hitokoto-label">💬 当日のひとこと</div>
+        <p class="hitokoto-text">{snippet}</p>
+        {event.post?.post_url && (
+          <p class="hitokoto-source">
+            <a href={event.post.post_url} target="_blank" rel="noopener">— Facebook投稿より →</a>
+          </p>
+        )}
+      </blockquote>
+    )}
+
+    {/* 食べログ × Instagram 2カラム */}
+    {(event.tabelog || event.instagramPostUrl || event.instagram) && (
+      <div class="tabelog-insta-row">
+        {event.tabelog && (
+          <section>
+            <h2>食べログ</h2>
+            <div class="tabelog-panel">
+              <div class="tabelog-header">
+                <div>
+                  <div class="tabelog-name">{event.storeName}</div>
+                  {event.tabelogOgp?.description && (
+                    <div class="tabelog-meta">{event.tabelogOgp.description}</div>
+                  )}
+                </div>
+                {event.tabelogInfo?.score && (
+                  <div class="tabelog-score">
+                    <span class="tabelog-score-num">{event.tabelogInfo.score}</span>
+                    <span class="tabelog-score-label">食べログ評価</span>
+                  </div>
+                )}
+              </div>
+              {event.tabelogOgp?.image && (
+                <a href={event.tabelog} target="_blank" rel="noopener" class="tabelog-ogp-hero">
+                  <img src={event.tabelogOgp.image} alt={`${event.storeName} 食べログ`} loading="lazy" />
+                </a>
+              )}
+              {event.tabelogInfo?.photos && event.tabelogInfo.photos.length > 0 && (
+                <div class="tabelog-photos">
+                  {event.tabelogInfo.photos.map((src, i) => (
+                    <a href={event.tabelog} target="_blank" rel="noopener" class="tabelog-photo-item">
+                      <img src={src} alt={`${event.storeName} 写真${i + 1}`} loading="lazy" />
+                    </a>
+                  ))}
+                </div>
+              )}
+              <a class="tabelog-link" href={event.tabelog} target="_blank" rel="noopener">
+                食べログで詳細・口コミを見る →
+              </a>
+            </div>
+          </section>
+        )}
+
+        {(event.instagramPostUrl || event.instagram) && (
+          <section>
+            <h2>Instagram</h2>
+            {event.instagramPostUrl ? (
+              <>
+                {(() => {
+                  const m = event.instagramPostUrl.match(/\/(p|reel)\/([A-Za-z0-9_\-]+)/);
+                  const code = m?.[2];
+                  const type = m?.[1] ?? 'p';
+                  return code ? (
+                    <iframe
+                      class="instagram-embed-frame"
+                      src={`https://www.instagram.com/${type}/${code}/embed/captioned/`}
+                      loading="lazy"
+                      scrolling="no"
+                      frameborder="0"
+                      allowtransparency="true"
+                    ></iframe>
+                  ) : null;
+                })()}
+                <p style="text-align:right;margin-top:0.4rem;">
+                  <a href={event.instagramPostUrl} target="_blank" rel="noopener" style="font-size:0.9rem;">
+                    Instagram投稿を開く →
+                  </a>
+                  {event.instagram && (
+                    <> ／ <a href={event.instagram} target="_blank" rel="noopener" style="font-size:0.9rem;">
+                      プロフィール →
+                    </a></>
+                  )}
+                </p>
+              </>
+            ) : (
+              <a class="ext-link-card instagram-card" href={event.instagram} target="_blank" rel="noopener">
+                <span class="ext-link-card-icon">📸</span>
+                <div class="ext-link-card-body">
+                  <div class="ext-link-card-source">Instagram</div>
+                  <div class="ext-link-card-title">{event.storeName} のInstagramを見る</div>
+                </div>
+                <span class="ext-link-card-arrow">→</span>
+              </a>
+            )}
+          </section>
+        )}
+      </div>
+    )}
+
+    {/* YouTube */}
+    {event.youtube && (
+      <section>
+        <h2>YouTube</h2>
+        {(() => {
+          const url = event.youtube;
+          const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_\-]{11})/);
+          const videoId = m?.[1];
+          return videoId ? (
+            <div class="youtube-embed">
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={`第${event.kai}回 福島LOVE会 YouTube`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          ) : (
+            <a class="ext-link-card" href={url} target="_blank" rel="noopener">
+              <span class="ext-link-card-icon">▶</span>
+              <div class="ext-link-card-body">
+                <div class="ext-link-card-source">YouTube</div>
+                <div class="ext-link-card-title">第{event.kai}回 動画を見る</div>
+              </div>
+              <span class="ext-link-card-arrow">→</span>
+            </a>
+          );
+        })()}
+      </section>
+    )}
+
+    {/* Google口コミ・場所 */}
+    <section>
+      <h2>Google 口コミ・場所</h2>
+      {event.googlePlaceInfo && (
+        <div class="google-place-panel">
+          <div class="google-place-header">
+            <div class="google-place-name">{event.googlePlaceInfo.name}</div>
+            {event.googlePlaceInfo.rating && (
+              <div class="google-place-score">
+                <span class="google-place-score-num">{event.googlePlaceInfo.rating}</span>
+                <span class="google-place-stars">{'★'.repeat(Math.round(event.googlePlaceInfo.rating))}</span>
+                {event.googlePlaceInfo.user_rating_count && (
+                  <span class="google-place-count">({event.googlePlaceInfo.user_rating_count}件)</span>
+                )}
+              </div>
+            )}
+          </div>
+          {event.googlePlaceInfo.photos.length > 0 && (
+            <div class="google-place-photos">
+              {event.googlePlaceInfo.photos.map((src, i) => (
+                <a href={event.googleReview || '#'} target="_blank" rel="noopener" class="google-place-photo-item">
+                  <img src={src} alt={`${event.storeName} Google写真${i + 1}`} loading="lazy" />
+                </a>
+              ))}
+            </div>
+          )}
+          {(weekdayDescriptions.length > 0 || priceYen || event.googlePlaceInfo.phone || event.googlePlaceInfo.website) && (
+            <div class="place-info-grid">
+              {priceYen && (
+                <div class="place-info-item">
+                  <div class="place-info-label">予算帯</div>
+                  <div class="place-info-value place-info-yen">{priceYen}</div>
+                </div>
+              )}
+              {event.googlePlaceInfo.phone && (
+                <div class="place-info-item">
+                  <div class="place-info-label">電話</div>
+                  <div class="place-info-value">
+                    <a href={`tel:${event.googlePlaceInfo.phone.replace(/\s+/g, '')}`}>{event.googlePlaceInfo.phone}</a>
+                  </div>
+                </div>
+              )}
+              {event.googlePlaceInfo.website && (
+                <div class="place-info-item">
+                  <div class="place-info-label">公式サイト</div>
+                  <div class="place-info-value">
+                    <a href={event.googlePlaceInfo.website} target="_blank" rel="noopener" class="place-info-website">
+                      {(() => {
+                        try {
+                          return new URL(event.googlePlaceInfo.website).host.replace(/^www\./, '');
+                        } catch {
+                          return '公式サイト';
+                        }
+                      })()} ↗
+                    </a>
+                  </div>
+                </div>
+              )}
+              {weekdayDescriptions.length > 0 && (
+                <details class="place-info-hours">
+                  <summary>
+                    <span class="place-info-label">営業時間・定休日</span>
+                    <span class="place-info-hours-toggle">▼</span>
+                  </summary>
+                  <ul>
+                    {weekdayDescriptions.map((line) => <li>{line}</li>)}
+                  </ul>
+                </details>
+              )}
+            </div>
+          )}
+          {event.googlePlaceInfo.reviews.length > 0 && (
+            <div class="google-reviews">
+              {event.googlePlaceInfo.reviews.map((rv) => (
+                <div class="google-review-item">
+                  <div class="google-review-header">
+                    <span class="google-review-author">{rv.author}</span>
+                    {rv.rating && <span class="google-review-stars">{'★'.repeat(rv.rating)}</span>}
+                    <span class="google-review-time">{rv.relative_time}</span>
+                  </div>
+                  <p class="google-review-text">{rv.text}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      <iframe
+        src={event.googlePlaceInfo?.place_id
+          ? `https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=place_id:${event.googlePlaceInfo.place_id}&language=ja`
+          : `https://www.google.com/maps/embed/v1/search?key=${GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(event.storeName + (event.address ? ' ' + event.address : ''))}&language=ja`}
+        width="100%"
+        height="400"
+        style="border:0;border-radius:10px;display:block;margin-top:1rem;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      {event.googleReview && (
+        <p style="text-align:right;margin-top:0.4rem;">
+          <a href={event.googleReview} target="_blank" rel="noopener" style="font-size:0.9rem;">Google マップで開く →</a>
+        </p>
+      )}
+    </section>
+
+    {event.photos && event.photos.length > 0 && (
+      <section>
+        <h2>当日の写真</h2>
+        <div class="photo-gallery">
+          {event.photos.map((src, i) => (
+            <a href={src} class="photo-gallery-item" target="_blank" rel="noopener">
+              <img src={src} alt={`第${event.kai}回 写真 ${i + 1}`} loading="lazy" />
+            </a>
+          ))}
+        </div>
+        {event.post?.post_url && (
+          <p style="text-align: right; margin-top: 0.5rem;">
+            <a href={event.post.post_url} target="_blank" rel="noopener" style="font-size: 0.9rem;">
+              Facebook投稿を開く →
+            </a>
+          </p>
+        )}
+      </section>
+    )}
+    {(!event.photos || event.photos.length === 0) && event.post?.post_url && (
+      <section>
+        <h2>当日の写真・様子</h2>
+        <a
+          class="fb-link-card fb-link-card-lg"
+          href={event.post.post_url}
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="fb-link-icon">📷</div>
+          <div class="fb-link-body">
+            <div class="fb-link-title">Facebookグループで写真を見る</div>
+            <div class="fb-link-sub">
+              {event.post.text_snippet ? event.post.text_snippet.slice(0, 80) + '...' : '当日の様子はグループに投稿されています'}
+            </div>
+            <div class="fb-link-note">※ グループ投稿のため閲覧にはFacebookログインが必要です</div>
+          </div>
+          <div class="fb-link-arrow">→</div>
+        </a>
+      </section>
+    )}
+
+    {!event.post?.post_url && (
+      <section>
+        <h2>当日の写真・様子</h2>
+        <p class="empty-hint">
+          この回のFB投稿リンクはまだ登録されていません。
+          <a href="https://www.facebook.com/groups/296655063832420" target="_blank" rel="noopener">
+            Facebookグループから探す →
+          </a>
+        </p>
+      </section>
+    )}
+
+    {nearby.length > 0 && (
+      <section>
+        <h2>近隣の過去開催店</h2>
+        <div class="grid">
+          {nearby.map((e) => <EventCard event={e} compact={true} />)}
+        </div>
+      </section>
+    )}
+  </main>
+</Base>

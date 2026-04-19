@@ -1,0 +1,214 @@
+---
+import type { EnrichedEvent } from '../lib/data';
+import { categoryFromNotes } from '../lib/data';
+
+interface Props {
+  events: EnrichedEvent[];
+  height?: string;
+  focusKai?: number;
+}
+
+const { events, height = '560px', focusKai } = Astro.props;
+
+const pins = events
+  .filter((e) => e.geocode && e.geocode.lat != null && e.geocode.lon != null)
+  .map((e) => ({
+    kai: e.kai,
+    name: e.storeName,
+    date: e.date,
+    notes: e.notes,
+    address: e.address,
+    lat: e.geocode!.lat as number,
+    lon: e.geocode!.lon as number,
+    postUrl: e.post?.post_url ?? '',
+    category: categoryFromNotes(e.notes),
+  }));
+
+const pinsJson = JSON.stringify(pins);
+const focusJson = JSON.stringify(focusKai ?? null);
+---
+
+<style>
+  .fl-pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .fl-pin-inner {
+    transform: rotate(45deg);
+  }
+  .fl-pin-shusshin { background: #d04a3a; }
+  .fl-pin-ryouri { background: #2ca05a; }
+  .fl-pin-other { background: #6a7fb3; }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--color-sub);
+    margin: 0.4rem 0 0.8rem;
+  }
+  .map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+  }
+  .map-legend .dot {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+  }
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+<div class="map-legend">
+  <span><span class="dot" style="background: #d04a3a;"></span>店主が福島出身</span>
+  <span><span class="dot" style="background: #2ca05a;"></span>福島料理</span>
+  <span><span class="dot" style="background: #6a7fb3;"></span>その他の福島縁</span>
+</div>
+<div id="fukushima-love-map" class="map-container" style={`height: ${height};`}></div>
+
+{pins.length === 0 && (
+  <p class="empty-hint">
+    地図データがまだ生成されていません。
+    <code>python scripts/fukushima-love/04_geocode.py</code>
+    を実行してください。
+  </p>
+)}
+
+<script define:vars={{ pinsJson, focusJson }}>
+  const pins = JSON.parse(pinsJson);
+  const focusKai = JSON.parse(focusJson);
+
+  function escapeHtml(s) {
+    return String(s ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  async function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  async function loadLeaflet() {
+    if (!window.L) {
+      await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+    }
+    if (!window.L.markerClusterGroup) {
+      await loadScript('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js');
+    }
+    return window.L;
+  }
+
+  async function init() {
+    if (!pins.length) return;
+    const L = await loadLeaflet();
+    const mapEl = document.getElementById('fukushima-love-map');
+    if (!mapEl) return;
+
+    // 初期ビューはピンの重心
+    const avgLat = pins.reduce((s, p) => s + p.lat, 0) / pins.length;
+    const avgLon = pins.reduce((s, p) => s + p.lon, 0) / pins.length;
+    const map = L.map(mapEl).setView([avgLat, avgLon], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // 同じ座標に複数ピンが重なる場合、微小オフセットで区別しやすくする
+    const coordCounts = new Map();
+    for (const p of pins) {
+      const key = `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`;
+      coordCounts.set(key, (coordCounts.get(key) ?? 0) + 1);
+    }
+    const coordSeen = new Map();
+
+    const cluster = L.markerClusterGroup({
+      maxClusterRadius: 35,
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: false,
+    });
+    const markers = [];
+    let focusMarker = null;
+    for (const p of pins) {
+      const key = `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`;
+      const total = coordCounts.get(key) ?? 1;
+      const idx = coordSeen.get(key) ?? 0;
+      coordSeen.set(key, idx + 1);
+      // 同一座標に複数ある場合、円形に並べる
+      let lat = p.lat, lon = p.lon;
+      if (total > 1) {
+        const angle = (idx / total) * 2 * Math.PI;
+        const r = 0.0003; // 約30m
+        lat = p.lat + r * Math.sin(angle);
+        lon = p.lon + r * Math.cos(angle);
+      }
+      const catClass =
+        p.category === '店主が福島出身' ? 'fl-pin-shusshin' :
+        p.category === '福島料理' ? 'fl-pin-ryouri' :
+        'fl-pin-other';
+      const icon = L.divIcon({
+        className: '',
+        html: `<div class="fl-pin ${catClass}"><span class="fl-pin-inner">${p.kai}</span></div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 28],
+        popupAnchor: [0, -24],
+      });
+      const marker = L.marker([lat, lon], { icon });
+      const popup = `
+        <div style="min-width: 200px;">
+          <div style="color: #d04a3a; font-weight: 700;">第${p.kai}回</div>
+          <div style="font-weight: 600; margin: 0.2em 0;">
+            <a href="/events/${p.kai}/">${escapeHtml(p.name)}</a>
+          </div>
+          <div style="font-size: 0.85em; color: #666;">${escapeHtml(p.date)}</div>
+          ${p.notes ? `<div style="font-size: 0.85em; margin: 0.3em 0;">${escapeHtml(p.notes)}</div>` : ''}
+          ${p.postUrl ? `<div style="margin-top: 0.4em;"><a href="${p.postUrl}" target="_blank" rel="noopener">FB投稿 →</a></div>` : ''}
+        </div>
+      `;
+      marker.bindPopup(popup);
+      cluster.addLayer(marker);
+      markers.push(marker);
+      if (focusKai != null && p.kai === focusKai) {
+        focusMarker = marker;
+      }
+    }
+    map.addLayer(cluster);
+
+    if (focusMarker) {
+      map.setView(focusMarker.getLatLng(), 15);
+      focusMarker.openPopup();
+    } else if (markers.length > 1) {
+      const group = L.featureGroup(markers);
+      map.fitBounds(group.getBounds().pad(0.1));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>

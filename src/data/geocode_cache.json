@@ -1,0 +1,584 @@
+{
+  "東京都世田谷区上馬4-17-7 コーポ米澤 B1F": {
+    "lat": 35.6372239,
+    "lon": 139.6625859,
+    "display_name": "上馬, 世田谷区, 東京都, 154-0011, 日本",
+    "matched_query": "東京都世田谷区上馬",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区新宿1-7-3 三榮ビル 2F": {
+    "lat": 35.6902618,
+    "lon": 139.7005142,
+    "display_name": "新宿, JR新宿駅, 新宿三丁目, 新宿, 新宿区, 東京都, 160-0022, 日本",
+    "matched_query": "東京都新宿区新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都中野区中野5-50-6 総芸研ビル 2F": {
+    "lat": 35.7058302,
+    "lon": 139.665633,
+    "display_name": "中野, 4.東西線, 中野五丁目, 中野, 中野区, 東京都, 164-0001, 日本",
+    "matched_query": "東京都中野区中野",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都立川市曙町2-15-20 三多摩労働会館 B1F": {
+    "lat": 35.6991763,
+    "lon": 139.410881,
+    "display_name": "曙町, 柴崎町, 立川市, 東京都, 190-0012, 日本",
+    "matched_query": "東京都立川市曙町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都台東区浅草5-20-3": {
+    "lat": 35.7175966,
+    "lon": 139.7975626,
+    "display_name": "浅草, 台東区, 東京都, 111-0032, 日本",
+    "matched_query": "東京都台東区浅草",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区尾山台3-22-13 明治尾山台ビル 201": {
+    "lat": 35.6020863,
+    "lon": 139.6548109,
+    "display_name": "尾山台, 世田谷区, 東京都, 158-0086, 日本",
+    "matched_query": "東京都世田谷区尾山台",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区新宿6-4-2 コスモス新宿18 M1F": {
+    "lat": 35.6902618,
+    "lon": 139.7005142,
+    "display_name": "新宿, JR新宿駅, 新宿三丁目, 新宿, 新宿区, 東京都, 160-0022, 日本",
+    "matched_query": "東京都新宿区新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都中野区上高田5-43-2 サニーコート1F": {
+    "lat": 35.712836,
+    "lon": 139.6747493,
+    "display_name": "上高田, 中野区, 東京都, 164-0002, 日本",
+    "matched_query": "東京都中野区上高田",
+    "approximate": true,
+    "status": "ok"
+  },
+  "-": {
+    "lat": null,
+    "lon": null,
+    "display_name": null,
+    "status": "not_found"
+  },
+  "東京都江東区東雲1-9-13 東雲キャナルコ-トCODAN　1Ｆ": {
+    "lat": 35.6441411,
+    "lon": 139.8022923,
+    "display_name": "東雲, 江東区, 東京都, 135-0062, 日本",
+    "matched_query": "東京都江東区東雲",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区恵比寿西1-4-1 vandaビル 1F": {
+    "lat": 35.6483517,
+    "lon": 139.7065258,
+    "display_name": "恵比寿西, 渋谷区, 東京都, 150-0021, 日本",
+    "matched_query": "東京都渋谷区恵比寿西",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区四谷3-3 エスパスコンセールビル 2F": {
+    "lat": 35.6861405,
+    "lon": 139.7286558,
+    "display_name": "四谷, 新宿区, 東京都, 160-8484, 日本",
+    "matched_query": "東京都新宿区四谷",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区北沢5-21-10": {
+    "lat": 35.6634677,
+    "lon": 139.668154,
+    "display_name": "北沢, 世田谷区, 東京都, 155-0031, 日本",
+    "matched_query": "東京都世田谷区北沢",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区恵比寿西1-3-8 廣田ビル101": {
+    "lat": 35.6483517,
+    "lon": 139.7065258,
+    "display_name": "恵比寿西, 渋谷区, 東京都, 150-0021, 日本",
+    "matched_query": "東京都渋谷区恵比寿西",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都大田区蒲田5-7-6 CCMビル 3F": {
+    "lat": 35.5637235,
+    "lon": 139.7216959,
+    "display_name": "蒲田, 大田区, 東京都, 日本",
+    "matched_query": "東京都大田区蒲田",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区麹町3-4-1 麹町3丁目ビル102": {
+    "lat": 35.6838064,
+    "lon": 139.7379229,
+    "display_name": "麹町, 千代田区, 東京都, 102-0083, 日本",
+    "matched_query": "東京都千代田区麹町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都台東区浅草1-3-5 ＡＲＭビル　Ｂ１Ｆ": {
+    "lat": 35.7175966,
+    "lon": 139.7975626,
+    "display_name": "浅草, 台東区, 東京都, 111-0032, 日本",
+    "matched_query": "東京都台東区浅草",
+    "approximate": true,
+    "status": "ok"
+  },
+  "京都新宿区高田馬場2-19-8 阿部大竹共同ビル2F": {
+    "lat": 35.7126839,
+    "lon": 139.7036425,
+    "display_name": "高田馬場, JR Transfer, 高田馬場一丁目, 高田馬場, 新宿区, 東京都, 169-0075, 日本",
+    "matched_query": "京都新宿区高田馬場",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都豊島区要町1-2-12 モナーク西池袋 1F": {
+    "lat": 35.7332405,
+    "lon": 139.6986842,
+    "display_name": "要町, 池袋谷原線, 要町一丁目, 要町, 豊島区, 東京都, 171-0043, 日本",
+    "matched_query": "東京都豊島区要町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "神奈川県鎌倉市由比ガ浜4-由比ガ浜海岸": {
+    "lat": 35.3137738,
+    "lon": 139.5410038,
+    "display_name": "鎌倉葉山線, 由比ガ浜三丁目, 由比ガ浜一丁目, 鎌倉市, 神奈川県, 248-0014, 日本",
+    "matched_query": "神奈川県鎌倉市由比ガ浜",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都台東区上野1-2-6 長谷川ビル 2F": {
+    "lat": 35.7116941,
+    "lon": 139.7761709,
+    "display_name": "上野, 上野駅, 上野七丁目, 上野, 台東区, 東京都, 110-0005, 日本",
+    "matched_query": "東京都台東区上野",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都墨田区錦糸3-8-11 大野ビル 1F": {
+    "lat": 35.6978654,
+    "lon": 139.8139858,
+    "display_name": "錦糸, 墨田区, 東京都, 日本",
+    "matched_query": "東京都墨田区錦糸",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区太子堂3-15-5 バナナビル 1F": {
+    "lat": 35.6470592,
+    "lon": 139.6699374,
+    "display_name": "太子堂, 世田谷区, 東京都, 154-0004, 日本",
+    "matched_query": "東京都世田谷区太子堂",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-13-11 甲斐ビル 4F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区三軒茶屋2-14-17 高橋ビル 1F": {
+    "lat": 35.6421171,
+    "lon": 139.6687889,
+    "display_name": "三軒茶屋, 世田谷区, 東京都, 154-0024, 日本",
+    "matched_query": "東京都世田谷区三軒茶屋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区岩戸町14 神楽坂不二ビル　１Ｆ": {
+    "lat": 35.7014267,
+    "lon": 139.7377869,
+    "display_name": "岩戸町, 新宿区, 東京都, 160-8484, 日本",
+    "matched_query": "東京都新宿区岩戸町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都豊島区池袋2-62-6 第三栄寿マンション 101": {
+    "lat": 35.7297986,
+    "lon": 139.7102422,
+    "display_name": "池袋, みずき通り, 西池袋一丁目, 西池袋, 豊島区, 東京都, 171-0021, 日本",
+    "matched_query": "東京都豊島区池袋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都港区芝5-30-5 岩永ビル　２Ｆ": {
+    "lat": 35.6505871,
+    "lon": 139.7495267,
+    "display_name": "芝, 港区, 東京都, 日本",
+    "matched_query": "東京都港区芝",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都目黒区上目黒3": {
+    "lat": 35.6428011,
+    "lon": 139.6930849,
+    "display_name": "上目黒, 目黒区, 東京都, 153-0051, 日本",
+    "matched_query": "東京都目黒区上目黒",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都港区新橋3-16-22": {
+    "lat": 35.6654162,
+    "lon": 139.7593717,
+    "display_name": "新橋, 第一京浜, 新橋二丁目, 新橋, 港区, 東京都, 105-0004, 日本",
+    "matched_query": "東京都港区新橋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "神奈川県藤沢市鵠沼海岸1-5218": {
+    "lat": 35.320701,
+    "lon": 139.471256,
+    "display_name": "鵠沼海岸, 国道134号, 片瀬海岸三丁目, 片瀬海岸, 藤沢市, 神奈川県, 251-0038, 日本",
+    "matched_query": "神奈川県藤沢市鵠沼海岸",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都板橋区赤塚2-11-17": {
+    "lat": 35.7788033,
+    "lon": 139.6434642,
+    "display_name": "赤塚, 板橋区, 東京都, 175-0092, 日本",
+    "matched_query": "東京都板橋区赤塚",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都目黒区目黒3-11-9": {
+    "lat": 35.6339231,
+    "lon": 139.7072864,
+    "display_name": "目黒, 目黒区, 東京都, 153-0063, 日本",
+    "matched_query": "東京都目黒区目黒",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区西早稲田2-3-22": {
+    "lat": 35.7101584,
+    "lon": 139.7153878,
+    "display_name": "西早稲田, 新宿区, 東京都, 169-0051, 日本",
+    "matched_query": "東京都新宿区西早稲田",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都北区田端3-8-7": {
+    "lat": 35.7373723,
+    "lon": 139.761707,
+    "display_name": "田端, 田端駅(南口), 東田端一丁目, 東田端, 北区, 東京都, 114-0013, 日本",
+    "matched_query": "東京都北区田端",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都文京区千駄木2-42-1": {
+    "lat": 35.7255677,
+    "lon": 139.7632458,
+    "display_name": "千駄木, 不忍通り, 千駄木三丁目, 千駄木, 文京区, 東京都, 113-0022, 日本",
+    "matched_query": "東京都文京区千駄木",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都台東区日本堤2-39-6": {
+    "lat": 35.7269213,
+    "lon": 139.7980059,
+    "display_name": "日本堤, 台東区, 東京都, 111-0021, 日本",
+    "matched_query": "東京都台東区日本堤",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都目黒区鷹番3-4-17 ウェルフラッグ 1F": {
+    "lat": 35.6278194,
+    "lon": 139.6855823,
+    "display_name": "鷹番, 目黒区, 東京都, 152-0004, 日本",
+    "matched_query": "東京都目黒区鷹番",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都杉並区阿佐谷南3-37-3 第4志村ビル 2F": {
+    "lat": 35.7020498,
+    "lon": 139.6373057,
+    "display_name": "阿佐谷南, 高円寺, 杉並区, 東京都, 166-0004, 日本",
+    "matched_query": "東京都杉並区阿佐谷南",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区恵比寿1-26-12 FLAT16 B1F": {
+    "lat": 35.6469875,
+    "lon": 139.7086263,
+    "display_name": "恵比寿, 駒沢通り, 恵比寿西一丁目, 恵比寿西, 渋谷区, 東京都, 150-0021, 日本",
+    "matched_query": "東京都渋谷区恵比寿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都目黒区上目黒3-6-5 西銀座ハイツ 2F": {
+    "lat": 35.6428011,
+    "lon": 139.6930849,
+    "display_name": "上目黒, 目黒区, 東京都, 153-0051, 日本",
+    "matched_query": "東京都目黒区上目黒",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区四谷1-11 BELL ALLEY 1F": {
+    "lat": 35.6861405,
+    "lon": 139.7286558,
+    "display_name": "四谷, 新宿区, 東京都, 160-8484, 日本",
+    "matched_query": "東京都新宿区四谷",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都杉並区西荻南2-20-8 山田ビル1F": {
+    "lat": 35.7010053,
+    "lon": 139.6030934,
+    "display_name": "西荻南, 杉並区, 東京都, 167-0053, 日本",
+    "matched_query": "東京都杉並区西荻南",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区六番町4-3 GEMS市ヶ谷 5F": {
+    "lat": 35.687493,
+    "lon": 139.733399,
+    "display_name": "六番町, 千代田区, 東京都, 102-0085, 日本",
+    "matched_query": "東京都千代田区六番町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区代々木1-31-17 1F": {
+    "lat": 35.682304,
+    "lon": 139.6917362,
+    "display_name": "代々木, 渋谷区, 東京都, 151-0053, 日本",
+    "matched_query": "東京都渋谷区代々木",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区新宿2-1-7": {
+    "lat": 35.6902618,
+    "lon": 139.7005142,
+    "display_name": "新宿, JR新宿駅, 新宿三丁目, 新宿, 新宿区, 東京都, 160-0022, 日本",
+    "matched_query": "東京都新宿区新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区西新宿1-12-6 新宿月光荘ビル3F": {
+    "lat": 35.690719,
+    "lon": 139.6941527,
+    "display_name": "西新宿, 新宿区, 東京都, 160-0023, 日本",
+    "matched_query": "東京都新宿区西新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区代沢5-33-3 ボート代沢 1A": {
+    "lat": 35.6566718,
+    "lon": 139.6705979,
+    "display_name": "代沢, 世田谷区, 東京都, 155-0032, 日本",
+    "matched_query": "東京都世田谷区代沢",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区東3-22-9 小倉ビル　１Ｆ": {
+    "lat": 35.6531376,
+    "lon": 139.7114585,
+    "display_name": "東, 渋谷区, 東京都, 150-0011, 日本",
+    "matched_query": "東京都渋谷区東",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町2-45-2 ジャストビル　１Ｆ": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町１-１４-７ 新宿ハヤシビル３F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区四谷3-13-20 YSビル1F": {
+    "lat": 35.6861405,
+    "lon": 139.7286558,
+    "display_name": "四谷, 新宿区, 東京都, 160-8484, 日本",
+    "matched_query": "東京都新宿区四谷",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都板橋区板橋１-１３-８ 協立コーポレーション第３ビル２階": {
+    "lat": 35.7505106,
+    "lon": 139.7152582,
+    "display_name": "板橋, 板橋区, 東京都, 日本",
+    "matched_query": "東京都板橋区板橋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区西新宿1-1-4 京王百貨店 屋上": {
+    "lat": 35.690719,
+    "lon": 139.6941527,
+    "display_name": "西新宿, 新宿区, 東京都, 160-0023, 日本",
+    "matched_query": "東京都新宿区西新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区新宿新宿３－２８－１６": {
+    "lat": 35.6906082,
+    "lon": 139.7057433,
+    "display_name": "東京純豆腐, メトロプロムナード, 新宿三丁目, 新宿, 新宿区, 東京都, 160-0022, 日本",
+    "matched_query": "東京都新宿区新宿新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区新宿3-21-4 第二サンパークビル 5F": {
+    "lat": 35.6902618,
+    "lon": 139.7005142,
+    "display_name": "新宿, JR新宿駅, 新宿三丁目, 新宿, 新宿区, 東京都, 160-0022, 日本",
+    "matched_query": "東京都新宿区新宿",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区九段南4-5-11 富士ビル　Ｂ１Ｆ": {
+    "lat": 35.6935523,
+    "lon": 139.746995,
+    "display_name": "九段南, 千代田区, 東京都, 102-0074, 日本",
+    "matched_query": "東京都千代田区九段南",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都台東区浅草1-11-2 御所コーポ 1F": {
+    "lat": 35.7175966,
+    "lon": 139.7975626,
+    "display_name": "浅草, 台東区, 東京都, 111-0032, 日本",
+    "matched_query": "東京都台東区浅草",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都中央区京橋3-1 東京スクエアガーデン B1F": {
+    "lat": 35.6758835,
+    "lon": 139.7717019,
+    "display_name": "京橋, 中央区, 東京都, 104-0031, 日本",
+    "matched_query": "東京都中央区京橋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都世田谷区北沢2-6-6 澤田ビル2F": {
+    "lat": 35.6634677,
+    "lon": 139.668154,
+    "display_name": "北沢, 世田谷区, 東京都, 155-0031, 日本",
+    "matched_query": "東京都世田谷区北沢",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都品川区東五反田2-1-1": {
+    "lat": 35.6278435,
+    "lon": 139.7267818,
+    "display_name": "東五反田, 品川区, 東京都, 141-0022, 日本",
+    "matched_query": "東京都品川区東五反田",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-26-7 カワノビル B2F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都中央区東日本橋3-8-1 ポーセレンビル 1F": {
+    "lat": 35.6921239,
+    "lon": 139.7848848,
+    "display_name": "東日本橋, 清杉通り, 東日本橋二丁目, 東日本橋, 中央区, 東京都, 103-0004, 日本",
+    "matched_query": "東京都中央区東日本橋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区神田錦町3-22 テラススクエア　1F": {
+    "lat": 35.6916939,
+    "lon": 139.7618479,
+    "display_name": "神田錦町, 千代田区, 東京都, 102-0000, 日本",
+    "matched_query": "東京都千代田区神田錦町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-3-15 ザ・カテリーナビル4F F室": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都渋谷区道玄坂1-16-13 西川ビル 1F": {
+    "lat": 35.6589015,
+    "lon": 139.6975367,
+    "display_name": "道玄坂, 道玄坂二丁目, 道玄坂, 渋谷区, 東京都, 150-0043, 日本",
+    "matched_query": "東京都渋谷区道玄坂",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町2-11-2 良川Ⅲビル 1F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-3-16 東金ビル 1F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区二番町1-2 番町ハイム１Ｆ": {
+    "lat": 35.686185,
+    "lon": 139.736126,
+    "display_name": "二番町, 千代田区, 東京都, 102-0000, 日本",
+    "matched_query": "東京都千代田区二番町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都港区新橋3-14-6 小林ビル 1F": {
+    "lat": 35.6654162,
+    "lon": 139.7593717,
+    "display_name": "新橋, 第一京浜, 新橋二丁目, 新橋, 港区, 東京都, 105-0004, 日本",
+    "matched_query": "東京都港区新橋",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-12-6 歌舞伎町ビル 1F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都千代田区内神田3-18-8 ホワイト駅前ビル B1F": {
+    "lat": 35.6909054,
+    "lon": 139.7674775,
+    "display_name": "内神田, 千代田区, 東京都, 102-0000, 日本",
+    "matched_query": "東京都千代田区内神田",
+    "approximate": true,
+    "status": "ok"
+  },
+  "東京都新宿区歌舞伎町1-6-13 2F": {
+    "lat": 35.6945429,
+    "lon": 139.7027105,
+    "display_name": "歌舞伎町, 新宿区, 東京都, 160-0021, 日本",
+    "matched_query": "東京都新宿区歌舞伎町",
+    "approximate": true,
+    "status": "ok"
+  }
+}

@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { FB_GROUP_URL } from '../lib/sheet';
+---
+
+<Base title="福島LOVE会について">
+  <main class="container" style="padding-top: 2rem;">
+    <h1>福島LOVE会について</h1>
+
+    <p>
+      福島LOVE会は、<strong>福島県にゆかりのある人</strong>が集う有志コミュニティです。
+      毎月1回、<strong>福島に縁のあるお店</strong>で飲み会を開催しています。
+    </p>
+
+    <h2>お店の選び方</h2>
+    <p>会の趣旨に沿って、以下のいずれかに当てはまる店を選んでいます:</p>
+    <ul>
+      <li>店主・店長・料理長が福島県出身</li>
+      <li>福島県の郷土料理を扱っている</li>
+      <li>福島県産の食材を積極的に使っている</li>
+      <li>福島県と深い関わりがある（産直、支援活動など）</li>
+    </ul>
+
+    <h2>このサイトの使い方</h2>
+    <ul>
+      <li>
+        <strong><a href="/events/">開催記録</a></strong> —
+        これまで訪れた全店舗の一覧。店名・住所・メモで検索可能
+      </li>
+      <li>
+        <strong><a href="/map/">マップ</a></strong> —
+        全店舗を地図上で俯瞰。クリックで各回の詳細と当日写真へ
+      </li>
+    </ul>
+
+    <h2>参加方法・お問い合わせ</h2>
+    <p>
+      Facebookグループへの参加申請をお願いします。
+      福島とのご縁（出身・家族・趣味・思い出など）を書いていただけるとスムーズです。
+    </p>
+    <p>
+      <a class="btn" href={FB_GROUP_URL} target="_blank" rel="noopener">
+        Facebookグループへ →
+      </a>
+    </p>
+
+    <h2>データソース</h2>
+    <ul>
+      <li>店舗情報: 参加者で共有しているGoogleスプレッドシート</li>
+      <li>開催写真: Facebookグループ（公開グループのため非メンバーも閲覧可）</li>
+      <li>地図: OpenStreetMap + Leaflet</li>
+    </ul>
+  </main>
+</Base>

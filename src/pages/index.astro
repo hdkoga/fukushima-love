@@ -1,0 +1,241 @@
+---
+import Base from '../layouts/Base.astro';
+import EventCard from '../components/EventCard.astro';
+import MapListView from '../components/MapListView.astro';
+import StatsHero from '../components/StatsHero.astro';
+import { getEnrichedEvents } from '../lib/data';
+import { computeStats } from '../lib/stats';
+
+const events = await getEnrichedEvents();
+const latest = events[0];
+const totalStores = events.length;
+const stats = computeStats(events);
+---
+
+<Base title="福島LOVE会">
+
+  <!-- ── マストヘッド ──────────────────────────────────────── -->
+  <header class="masthead">
+    <div class="masthead-inner container">
+
+      <div class="masthead-text">
+        <p class="masthead-eyebrow">FUKUSHIMA COMMUNITY · TOKYO</p>
+        <h1 class="masthead-title">
+          福島<span class="masthead-love">LOVE</span>会
+        </h1>
+        <p class="masthead-sub">
+          福島にゆかりのある人のコミュニティ。<br>
+          毎月1回、福島縁の店で集う。
+        </p>
+        <div class="masthead-meta">
+          <span class="masthead-badge">
+            第<strong>{latest?.kai ?? '-'}</strong>回まで開催
+          </span>
+          <span class="masthead-badge">
+            <strong>{totalStores}</strong>店舗
+          </span>
+          <a class="masthead-fb" href="https://www.facebook.com/groups/296655063832420" target="_blank" rel="noopener">
+            Facebookグループ →
+          </a>
+        </div>
+      </div>
+
+      <div class="masthead-chars">
+        <img
+          src="/images/organizer1.png"
+          alt="主催者1"
+          class="masthead-char masthead-char-1"
+          onerror="this.style.display='none'"
+        />
+        <img
+          src="/images/organizer2.png"
+          alt="主催者2"
+          class="masthead-char masthead-char-2"
+          onerror="this.style.display='none'"
+        />
+      </div>
+
+    </div>
+  </header>
+
+  <main class="container">
+
+    {latest && (
+      <section>
+        <h2>最新回</h2>
+        <EventCard event={latest} featured={true} />
+      </section>
+    )}
+
+    <section>
+      <h2>最近の開催</h2>
+      <div class="ec-grid">
+        {events.slice(1, 7).map((e) => <EventCard event={e} compact={true} />)}
+      </div>
+      <p style="text-align: right; margin-top: 1.5rem;">
+        <a class="btn btn-outline" href="/events/">すべての開催記録 →</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>数字で見るLOVE会</h2>
+      <StatsHero stats={stats} />
+    </section>
+
+    <section>
+      <h2>マップで振り返る</h2>
+      <p style="color: var(--color-sub); font-size: 0.9rem; margin-bottom: 1rem;">
+        これまで訪れた福島縁の店を地図で俯瞰。ピンをクリックすると各回の詳細・写真ページへ。
+      </p>
+      <MapListView events={events} height="520px" />
+      <p style="text-align: right; margin-top: 0.75rem;">
+        <a class="btn btn-outline" href="/map/">全画面マップへ →</a>
+      </p>
+    </section>
+
+  </main>
+</Base>
+
+<style>
+/* ── マストヘッド ─────────────────────────────────────────── */
+.masthead {
+  background: #fff;
+  border-bottom: 3px solid #111;
+  overflow: hidden;
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  min-height: 260px;
+}
+
+.masthead-text {
+  flex: 1;
+  padding: 2.5rem 2rem 2rem 0;
+  min-width: 0;
+}
+
+.masthead-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #e63329;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.masthead-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #e63329;
+  flex-shrink: 0;
+}
+
+.masthead-title {
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: #111;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.masthead-love {
+  color: #e63329;
+}
+
+.masthead-sub {
+  font-size: 0.92rem;
+  color: #666;
+  line-height: 1.75;
+  margin: 0 0 1.2rem;
+}
+
+.masthead-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.masthead-badge {
+  font-size: 0.78rem;
+  color: #333;
+  background: #f3f3f3;
+  border: 1px solid #e0e0e0;
+  padding: 0.25em 0.75em;
+  letter-spacing: 0.02em;
+}
+.masthead-badge strong {
+  color: #e63329;
+  font-size: 1em;
+}
+
+.masthead-fb {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1877f2;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+}
+.masthead-fb:hover {
+  text-decoration: underline;
+  color: #1877f2;
+}
+
+/* ── キャラクター ─────────────────────────────────────────── */
+.masthead-chars {
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+  gap: 0;
+  margin-right: -0.5rem;
+}
+
+.masthead-char {
+  height: 220px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(2px 0 0 rgba(0,0,0,0.06));
+}
+
+.masthead-char-1 {
+  transform: translateX(12px);
+  z-index: 1;
+}
+.masthead-char-2 {
+  z-index: 2;
+}
+
+/* ── レスポンシブ ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .masthead-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+  }
+  .masthead-text {
+    padding: 1.75rem 0 0.5rem;
+    order: 1;
+  }
+  .masthead-chars {
+    order: 0;
+    align-self: flex-end;
+    margin-right: -1rem;
+    margin-top: -0.5rem;
+  }
+  .masthead-char {
+    height: 140px;
+  }
+  .masthead-title {
+    font-size: 2.4rem;
+  }
+}
+</style>

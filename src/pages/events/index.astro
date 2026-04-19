@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getEnrichedEvents, formatDate, categoryFromNotes } from '../../lib/data';
+
+const events = await getEnrichedEvents();
+
+function extractYear(date: string): string {
+  const m = date.match(/(\d{4})/);
+  return m ? m[1] : '不明';
+}
+
+const years = Array.from(new Set(events.map((e) => extractYear(e.date))))
+  .filter((y) => y !== '不明')
+  .sort((a, b) => Number(b) - Number(a));
+
+const categories = ['店主が福島出身', '福島料理', 'その他の福島縁'];
+---
+
+<Base title="開催記録 | 福島LOVE会">
+  <main class="container" style="padding-top: 2rem;">
+    <h1>開催記録</h1>
+    <p>これまでの福島LOVE会 全{events.length}回の記録。店名・住所・キーワードで絞り込めます。</p>
+
+    <div class="filter-bar">
+      <input id="q" type="search" placeholder="店名・住所・メモで検索..." style="flex: 1; min-width: 200px;" />
+      <select id="year-filter">
+        <option value="">全年度</option>
+        {years.map((y) => <option value={y}>{y}年</option>)}
+      </select>
+      <select id="cat-filter">
+        <option value="">すべての分類</option>
+        {categories.map((c) => <option value={c}>{c}</option>)}
+      </select>
+      <label style="display: flex; align-items: center; gap: 0.3em;">
+        <input id="fb-only" type="checkbox" />
+        写真/投稿ありのみ
+      </label>
+    </div>
+    <p id="count" style="color: var(--color-sub); font-size: 0.9rem; margin: 0.3rem 0;"></p>
+
+    <div id="event-list">
+      {events.map((e) => {
+        const cat = categoryFromNotes(e.notes);
+        const year = extractYear(e.date);
+        const hasFb = !!(e.post && e.post.post_url);
+        return (
+          <div
+            class="event-row"
+            data-search={[e.storeName, e.address, e.notes, e.date].join(' ').toLowerCase()}
+            data-year={year}
+            data-category={cat}
+            data-hasfb={(hasFb || e.photos.length > 0) ? '1' : '0'}
+          >
+            <div>
+              {e.photos.length > 0
+                ? <a href={`/events/${e.kai}/`}><img class="event-row-thumb" src={e.photos[0]} alt={`第${e.kai}回`} loading="lazy" /></a>
+                : hasFb
+                  ? <div class="event-row-thumb-placeholder">📷</div>
+                  : <div class="event-row-thumb-placeholder" style="background:transparent;"></div>
+              }
+            </div>
+            <div class="kai" style="align-self:center;">第{e.kai}回</div>
+            <div>
+              <a class="store" href={`/events/${e.kai}/`}>{e.storeName}</a>
+              <span class="link-icons">
+                {e.tabelog && <a class="link-icon" href={e.tabelog} target="_blank" rel="noopener" title="食べログ">食</a>}
+                {e.instagram && <a class="link-icon" href={e.instagram} target="_blank" rel="noopener" title="Instagram">In</a>}
+                {e.googleReview && <a class="link-icon" href={e.googleReview} target="_blank" rel="noopener" title="Google口コミ" style="background:#e8f0fe;color:#1a73e8;">G</a>}
+              </span>
+              <span class="tag" style="margin-left: 0.3em; background: #e0d7f0; color: #5c4b8a;">
+                {cat}
+              </span>
+              <div style="color: var(--color-sub); font-size: 0.9rem;">
+                {formatDate(e.date)}
+                {e.address && <> ・ {e.address}</>}
+              </div>
+              {e.notes && (
+                <div style="font-size: 0.9rem; margin-top: 0.15rem;">{e.notes}</div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+    <p id="no-results" class="empty-hint" style="display: none;">
+      該当する開催が見つかりませんでした。
+    </p>
+  </main>
+
+  <script is:inline>
+    (function () {
+      const q = document.getElementById('q');
+      const yearFilter = document.getElementById('year-filter');
+      const catFilter = document.getElementById('cat-filter');
+      const fbOnly = document.getElementById('fb-only');
+      const rows = document.querySelectorAll('#event-list .event-row');
+      const noResults = document.getElementById('no-results');
+      const count = document.getElementById('count');
+      const total = rows.length;
+
+      function run() {
+        const needle = (q.value || '').toLowerCase().trim();
+        const year = yearFilter.value;
+        const cat = catFilter.value;
+        const fb = fbOnly.checked;
+        let shown = 0;
+        rows.forEach((row) => {
+          const hay = row.getAttribute('data-search') || '';
+          const rYear = row.getAttribute('data-year') || '';
+          const rCat = row.getAttribute('data-category') || '';
+          const rFb = row.getAttribute('data-hasfb') === '1';
+          const match =
+            (!needle || hay.indexOf(needle) >= 0) &&
+            (!year || rYear === year) &&
+            (!cat || rCat === cat) &&
+            (!fb || rFb);
+          row.style.display = match ? '' : 'none';
+          if (match) shown++;
+        });
+        noResults.style.display = shown === 0 ? '' : 'none';
+        count.textContent = `表示: ${shown} / ${total}件`;
+      }
+      q.addEventListener('input', run);
+      yearFilter.addEventListener('change', run);
+      catFilter.addEventListener('change', run);
+      fbOnly.addEventListener('change', run);
+      run();
+    })();
+  </script>
+</Base>

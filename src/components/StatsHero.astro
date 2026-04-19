@@ -1,0 +1,64 @@
+---
+import type { LoveKaiStats } from '../lib/stats';
+
+interface Props {
+  stats: LoveKaiStats;
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-num">{stats.totalKai}</div>
+    <div class="stat-label">開催回数</div>
+    <div class="stat-sub">{stats.firstDate} → {stats.latestDate}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{stats.uniqueStores}</div>
+    <div class="stat-label">訪問店舗数</div>
+    <div class="stat-sub">福島縁の名店</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">
+      {stats.yearsActive}
+      <span class="stat-unit">年</span>
+    </div>
+    <div class="stat-label">活動年数</div>
+    <div class="stat-sub">毎月1回ペース</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{stats.totalPhotos}</div>
+    <div class="stat-label">写真</div>
+    <div class="stat-sub">楽しんだ夜の記録</div>
+  </div>
+  {stats.repeatStores > 0 && (
+    <div class="stat-card">
+      <div class="stat-num">{stats.repeatStores}</div>
+      <div class="stat-label">殿堂入り店</div>
+      <div class="stat-sub">2回以上訪問</div>
+    </div>
+  )}
+  {stats.avgGoogleRating !== null && (
+    <div class="stat-card">
+      <div class="stat-num">
+        {stats.avgGoogleRating}
+        <span class="stat-unit">★</span>
+      </div>
+      <div class="stat-label">平均Google評価</div>
+      <div class="stat-sub">セレクトの確かさ</div>
+    </div>
+  )}
+</div>
+
+{stats.categoryBreakdown.length > 0 && (
+  <div class="stats-cat-row">
+    {stats.categoryBreakdown.map((c) => (
+      <div class="stats-cat-pill" style={`--cat-color:${c.color};`}>
+        <span class="stats-cat-icon">{c.icon}</span>
+        <span class="stats-cat-label">{c.label}</span>
+        <span class="stats-cat-count">{c.count}店</span>
+      </div>
+    ))}
+  </div>
+)}

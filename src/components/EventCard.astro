@@ -1,0 +1,228 @@
+---
+import type { EnrichedEvent } from '../lib/data';
+import { formatDate, categoryMeta, cleanSnippet } from '../lib/data';
+
+interface Props {
+  event: EnrichedEvent;
+  compact?: boolean;
+  featured?: boolean;
+}
+
+const { event, compact = false, featured = false } = Astro.props;
+const hasPost = event.post && event.post.post_url;
+const photos = event.photos ?? [];
+const hasPhotos = photos.length > 0;
+const isInstaEmbed = event.instagram && (event.instagram.includes('/p/') || event.instagram.includes('/reel/'));
+const cat = event.notes ? categoryMeta(event.notes) : null;
+const snippet = cleanSnippet(event.post?.text_snippet);
+
+// サムネイル優先順：イベント写真 → 食べログ写真 → null
+const thumb = hasPhotos
+  ? photos[0]
+  : event.tabelogInfo?.photos?.[0] ?? null;
+---
+
+{compact ? (
+  /* ── コンパクトカード（グリッド一覧用） ── */
+  <a href={`/events/${event.kai}/`} class="ec-card">
+    <div class="ec-thumb">
+      {thumb
+        ? <img src={thumb} alt={event.storeName} loading="lazy" />
+        : <div class="ec-no-photo">🍶</div>
+      }
+      <span class="ec-kai-badge">第{event.kai}回</span>
+    </div>
+    <div class="ec-body">
+      <p class="ec-date">{formatDate(event.date)}</p>
+      <h3 class="ec-title">{event.storeName}</h3>
+      {event.address && <p class="ec-addr">{event.address.replace(/^東京都/, '')}</p>}
+    </div>
+  </a>
+) : featured ? (
+  /* ── フィーチャーカード（トップページ最新） ── */
+  <a href={`/events/${event.kai}/`} class="ec-featured">
+    <div class="ec-featured-img">
+      {thumb
+        ? <img src={thumb} alt={event.storeName} loading="lazy" />
+        : <div class="ec-no-photo ec-no-photo--lg">🍶</div>
+      }
+      <div class="ec-featured-overlay">
+        <span class="ec-kai-badge ec-kai-badge--featured">第{event.kai}回</span>
+        <h2 class="ec-featured-title">{event.storeName}</h2>
+        <p class="ec-featured-meta">
+          {formatDate(event.date)}
+          {event.address && <span> · {event.address.replace(/^東京都/, '')}</span>}
+        </p>
+      </div>
+    </div>
+  </a>
+) : (
+  /* ── 通常カード（イベント詳細ページ内の「近隣」など） ── */
+  <article class="card">
+    {thumb && (
+      <a href={`/events/${event.kai}/`}>
+        <img src={thumb} alt={event.storeName} loading="lazy"
+          style="width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:8px;margin-bottom:0.8rem;display:block;" />
+      </a>
+    )}
+    <h3>
+      <span style="color:var(--color-accent);margin-right:0.4em;">第{event.kai}回</span>
+      <a href={`/events/${event.kai}/`}>{event.storeName}</a>
+    </h3>
+    <div class="event-meta">
+      <span>📅 <strong>{formatDate(event.date)}</strong></span>
+      {event.address && <span>📍 {event.address}</span>}
+    </div>
+    {event.notes && cat && (
+      <p style="margin:0.3rem 0;color:var(--color-sub);font-size:0.88rem;">{cat.icon} {event.notes}</p>
+    )}
+    {snippet && <p style="margin:0.4rem 0;color:var(--color-sub);font-size:0.85rem;">💬 {snippet}</p>}
+    <div style="margin-top:0.8rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+      {event.tabelog && <a class="btn btn-outline" href={event.tabelog} target="_blank" rel="noopener">食べログ</a>}
+      {event.instagram && <a class="btn btn-outline" href={event.instagram} target="_blank" rel="noopener">Instagram</a>}
+      {event.googleReview && <a class="btn btn-outline" href={event.googleReview} target="_blank" rel="noopener">Google口コミ</a>}
+      {hasPost && <a class="btn btn-outline" href={event.post!.post_url} target="_blank" rel="noopener">Facebook</a>}
+    </div>
+  </article>
+)}
+
+<style>
+/* ── コンパクトカード ─────────────── */
+.ec-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.ec-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  text-decoration: none;
+}
+.ec-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+.ec-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.3s ease;
+}
+.ec-card:hover .ec-thumb img { transform: scale(1.05); }
+
+.ec-no-photo {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  background: #f5f5f5;
+}
+.ec-no-photo--lg { font-size: 4rem; }
+
+.ec-kai-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #e63329;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.6em;
+  border-radius: 0;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.ec-kai-badge--featured {
+  font-size: 0.7rem;
+  padding: 0.3em 0.7em;
+}
+.ec-body {
+  padding: 0.7rem 0.85rem 0.85rem;
+  border-top: 2px solid transparent;
+  transition: border-color 0.16s ease;
+}
+.ec-card:hover .ec-body {
+  border-top-color: #e63329;
+}
+.ec-date {
+  font-size: 0.68rem;
+  color: #999;
+  margin: 0 0 0.2em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ec-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.2em;
+  line-height: 1.3;
+}
+.ec-addr {
+  font-size: 0.72rem;
+  color: #999;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ── フィーチャーカード ──────────── */
+.ec-featured {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.ec-featured:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+.ec-featured-img {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+.ec-featured-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.3s ease;
+}
+.ec-featured:hover .ec-featured-img img { transform: scale(1.03); }
+
+.ec-featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.25) 50%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+}
+.ec-featured-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0.3em 0 0.2em;
+  line-height: 1.2;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  letter-spacing: 0.02em;
+}
+.ec-featured-meta {
+  color: rgba(255,255,255,0.78);
+  font-size: 0.82rem;
+  margin: 0;
+}
+</style>

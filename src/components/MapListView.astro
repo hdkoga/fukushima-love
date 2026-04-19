@@ -1,0 +1,276 @@
+---
+import type { EnrichedEvent } from '../lib/data';
+import { categoryFromNotes, categoryMeta } from '../lib/data';
+
+interface Props {
+  events: EnrichedEvent[];
+  height?: string;
+}
+
+const { events, height = '540px' } = Astro.props;
+
+const items = events
+  .filter((e) => e.geocode?.lat != null && e.geocode?.lon != null)
+  .map((e) => {
+    const cat = categoryMeta(e.notes);
+    const thumb =
+      e.photos?.[0] ??
+      e.googlePlaceInfo?.photos?.[0] ??
+      e.tabelogInfo?.photos?.[0] ??
+      '';
+    return {
+      kai: e.kai,
+      name: e.storeName,
+      date: e.date,
+      notes: e.notes,
+      address: e.address,
+      lat: e.geocode!.lat as number,
+      lon: e.geocode!.lon as number,
+      postUrl: e.post?.post_url ?? '',
+      category: categoryFromNotes(e.notes),
+      catColor: cat.color,
+      catIcon: cat.icon,
+      catLabel: cat.label,
+      thumb,
+      rating: e.googlePlaceInfo?.rating ?? null,
+      tabelogScore: e.tabelogInfo?.score ?? null,
+    };
+  });
+
+const itemsJson = JSON.stringify(items);
+---
+
+<style>
+  .mpl-wrap {
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .mpl-list {
+    width: 300px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+    background: #fff;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+  .mpl-map-wrap { flex: 1; min-width: 0; }
+  #mpl-map { width: 100%; height: 100%; }
+
+  .mpl-item {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .mpl-item:hover { background: #fdf5f4; }
+  .mpl-item.active { background: rgba(230, 51, 41, 0.08); }
+
+  .mpl-thumb {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    background: var(--color-surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+  .mpl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .mpl-info { flex: 1; min-width: 0; }
+  .mpl-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--color-ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mpl-kai { font-size: 0.72rem; color: var(--color-sub); margin-bottom: 0.15rem; }
+  .mpl-score {
+    font-size: 0.75rem;
+    color: #f5a623;
+    font-weight: 600;
+    margin: 0.1rem 0;
+  }
+  .mpl-cat {
+    font-size: 0.72rem;
+    color: var(--color-sub);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+  .mpl-notes {
+    font-size: 0.75rem;
+    color: var(--color-sub);
+    margin-top: 0.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 640px) {
+    .mpl-wrap { flex-direction: column; }
+    .mpl-list { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid var(--color-border); }
+    .mpl-map-wrap { height: 320px; }
+  }
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+<div class="mpl-wrap" style={`height: ${height};`}>
+  <div class="mpl-list" id="mpl-list">
+    {items.map((item) => (
+      <div class="mpl-item" data-kai={item.kai} id={`mpl-item-${item.kai}`}>
+        <div class="mpl-thumb">
+          {item.thumb
+            ? <img src={item.thumb} alt={item.name} loading="lazy" />
+            : <span>🍶</span>
+          }
+        </div>
+        <div class="mpl-info">
+          <div class="mpl-kai">第{item.kai}回</div>
+          <div class="mpl-name">{item.name}</div>
+          {(item.rating || item.tabelogScore) && (
+            <div class="mpl-score">
+              ★ {item.rating ?? item.tabelogScore}
+            </div>
+          )}
+          <div class="mpl-cat">
+            <span>{item.catIcon}</span>
+            <span>{item.catLabel}</span>
+          </div>
+          {item.notes && <div class="mpl-notes">{item.notes}</div>}
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="mpl-map-wrap">
+    <div id="mpl-map"></div>
+  </div>
+</div>
+
+<script define:vars={{ itemsJson }}>
+  const items = JSON.parse(itemsJson);
+
+  function escHtml(s) {
+    return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  async function loadScript(src) {
+    return new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  async function init() {
+    if (!items.length) return;
+    if (!window.L) await loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+    if (!window.L.markerClusterGroup) await loadScript('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js');
+    const L = window.L;
+
+    const mapEl = document.getElementById('mpl-map');
+    if (!mapEl) return;
+
+    const avgLat = items.reduce((s, p) => s + p.lat, 0) / items.length;
+    const avgLon = items.reduce((s, p) => s + p.lon, 0) / items.length;
+    const map = L.map(mapEl).setView([avgLat, avgLon], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // 重複座標の分散
+    const coordCounts = new Map();
+    items.forEach(p => {
+      const k = `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`;
+      coordCounts.set(k, (coordCounts.get(k) ?? 0) + 1);
+    });
+    const coordSeen = new Map();
+
+    const cluster = L.markerClusterGroup({ maxClusterRadius: 35, spiderfyOnMaxZoom: true, showCoverageOnHover: false });
+    const markerByKai = new Map();
+
+    for (const p of items) {
+      const k = `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`;
+      const total = coordCounts.get(k) ?? 1;
+      const idx = coordSeen.get(k) ?? 0;
+      coordSeen.set(k, idx + 1);
+      let lat = p.lat, lon = p.lon;
+      if (total > 1) {
+        const angle = (idx / total) * 2 * Math.PI;
+        const r = 0.0003;
+        lat += r * Math.sin(angle);
+        lon += r * Math.cos(angle);
+      }
+      const catClass = p.category === '店主が福島出身' ? 'fl-pin-shusshin' : p.category === '福島料理' ? 'fl-pin-ryouri' : 'fl-pin-other';
+      const icon = L.divIcon({
+        className: '',
+        html: `<div class="fl-pin ${catClass}"><span class="fl-pin-inner">${p.kai}</span></div>`,
+        iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -24],
+      });
+      const marker = L.marker([lat, lon], { icon });
+      marker.bindPopup(`
+        <div style="min-width:180px;">
+          <div style="color:#d04a3a;font-weight:700;">第${p.kai}回</div>
+          <div style="font-weight:600;margin:0.2em 0;">
+            <a href="/events/${p.kai}/">${escHtml(p.name)}</a>
+          </div>
+          <div style="font-size:0.85em;color:#666;">${escHtml(p.date)}</div>
+          ${p.notes ? `<div style="font-size:0.82em;margin:0.3em 0;">${escHtml(p.notes)}</div>` : ''}
+        </div>`);
+
+      // ピンクリック → リストハイライト＋スクロール
+      marker.on('click', () => {
+        document.querySelectorAll('.mpl-item').forEach(el => el.classList.remove('active'));
+        const listItem = document.getElementById(`mpl-item-${p.kai}`);
+        if (listItem) {
+          listItem.classList.add('active');
+          listItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+
+      cluster.addLayer(marker);
+      markerByKai.set(p.kai, marker);
+    }
+    map.addLayer(cluster);
+    const group = L.featureGroup([...markerByKai.values()]);
+    map.fitBounds(group.getBounds().pad(0.1));
+
+    // リストクリック → マップフォーカス
+    document.querySelectorAll('.mpl-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const kai = Number(el.dataset.kai);
+        const marker = markerByKai.get(kai);
+        if (!marker) return;
+        document.querySelectorAll('.mpl-item').forEach(e => e.classList.remove('active'));
+        el.classList.add('active');
+        cluster.zoomToShowLayer(marker, () => {
+          map.setView(marker.getLatLng(), 15);
+          marker.openPopup();
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
