@@ -110,8 +110,12 @@ export async function getEnrichedEvents(): Promise<EnrichedEvent[]> {
       .map((f) => `/photos/${e.kai}/${f}`);
     const urls = sheetUrls[String(e.kai)] ?? {};
     const q = encodeURIComponent(e.storeName + (e.address ? ' ' + e.address : ''));
-    const googleReview = e.googleReview || urls.googleReview ||
-      (e.storeName ? `https://maps.google.com/maps?q=${q}` : '');
+    const rawGoogleReview = e.googleReview || urls.googleReview ||
+      (e.storeName ? `https://www.google.com/maps/search/?api=1&query=${q}` : '');
+    // Normalize old-format URLs to api=1 format (required for Maps app compatibility)
+    const googleReview = rawGoogleReview
+      .replace(/https:\/\/www\.google\.com\/maps\/search\/\?q=/, 'https://www.google.com/maps/search/?api=1&query=')
+      .replace(/https:\/\/maps\.google\.com\/maps\?q=/, 'https://www.google.com/maps/search/?api=1&query=');
     const tabelog = e.tabelog || urls.tabelog || '';
     const instagram = e.instagram || urls.instagram || '';
     const youtube = e.youtube || urls.youtube || '';
