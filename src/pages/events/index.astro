@@ -51,15 +51,15 @@ const categories = ['店主が福島出身', '福島料理', 'その他の福島
             data-category={cat}
             data-hasfb={(hasFb || e.photos.length > 0) ? '1' : '0'}
           >
-            <div>
+            <div class="event-row-col-thumb">
               {e.photos.length > 0
-                ? <a href={`/events/${e.kai}/`}><img class="event-row-thumb" src={e.photos[0]} alt={`第${e.kai}回`} loading="lazy" /></a>
+                ? <a href={`/events/${e.kai}/`} style="display:block;"><img class="event-row-thumb" src={e.photos[0]} alt={`第${e.kai}回`} loading="lazy" /></a>
                 : hasFb
                   ? <div class="event-row-thumb-placeholder">📷</div>
                   : <div class="event-row-thumb-placeholder" style="background:transparent;"></div>
               }
             </div>
-            <div>
+            <div class="event-row-col-body">
               <div class="kai">第{e.kai}回</div>
               <a class="store" href={`/events/${e.kai}/`}>{e.storeName}</a>
               <span class="link-icons">
