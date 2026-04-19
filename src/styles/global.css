@@ -387,16 +387,6 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
   margin-left: calc(60px + 0.75rem);
 }
 .event-row:hover { background: var(--color-surface); }
-@media (max-width: 480px) {
-  .event-row { padding: 0.6rem 0.25rem; }
-  .event-row-col-thumb { width: 48px; margin-right: 0.5rem; }
-  .event-row-col-body { margin-left: calc(48px + 0.5rem); }
-  .event-row-thumb,
-  .event-row-thumb-placeholder { width: 48px; height: 48px; }
-  .thumb-sm { width: 48px; height: 48px; }
-  .link-icons { display: none; }
-}
-
 .event-row-thumb {
   width: 60px;
   height: 60px;
@@ -414,6 +404,15 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
   color: var(--color-sub);
   background: var(--color-surface-2);
   border-radius: 4px;
+}
+@media (max-width: 480px) {
+  .event-row { padding: 0.6rem 0.25rem; }
+  .event-row-col-thumb { width: 48px; margin-right: 0.5rem; }
+  .event-row-col-body { margin-left: calc(48px + 0.5rem); }
+  .event-row-thumb,
+  .event-row-thumb-placeholder { width: 48px; height: 48px; }
+  .thumb-sm { width: 48px; height: 48px; }
+  .link-icons { display: none; }
 }
 
 /* ── Link icons ───────────────────────────────────────────── */
