@@ -111,7 +111,7 @@ export async function getEnrichedEvents(): Promise<EnrichedEvent[]> {
     const urls = sheetUrls[String(e.kai)] ?? {};
     const q = encodeURIComponent(e.storeName + (e.address ? ' ' + e.address : ''));
     const googleReview = e.googleReview || urls.googleReview ||
-      (e.storeName ? `https://www.google.com/maps/search/?q=${q}` : '');
+      (e.storeName ? `https://maps.google.com/maps?q=${q}` : '');
     const tabelog = e.tabelog || urls.tabelog || '';
     const instagram = e.instagram || urls.instagram || '';
     const youtube = e.youtube || urls.youtube || '';
