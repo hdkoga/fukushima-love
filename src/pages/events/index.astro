@@ -22,7 +22,7 @@ const categories = ['店主が福島出身', '福島料理', 'その他の福島
     <p>これまでの福島LOVE会 全{events.length}回の記録。店名・住所・キーワードで絞り込めます。</p>
 
     <div class="filter-bar">
-      <input id="q" type="search" placeholder="店名・住所・メモで検索..." style="flex: 1; min-width: 200px;" />
+      <input id="q" type="search" placeholder="店名・住所・メモで検索..." style="flex: 1; min-width: 0; width: 100%;" />
       <select id="year-filter">
         <option value="">全年度</option>
         {years.map((y) => <option value={y}>{y}年</option>)}
