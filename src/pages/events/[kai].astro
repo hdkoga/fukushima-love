@@ -1,6 +1,5 @@
 ---
 import Base from '../../layouts/Base.astro';
-import EventCard from '../../components/EventCard.astro';
 import { getEnrichedEvents, formatDate, categoryMeta, cleanSnippet, priceLevelToYen } from '../../lib/data';
 import { GOOGLE_MAPS_API_KEY } from '../../lib/sheet';
 
@@ -18,24 +17,12 @@ const snippet = cleanSnippet(event.post?.text_snippet);
 const priceYen = priceLevelToYen(event.googlePlaceInfo?.price_level);
 const weekdayDescriptions = event.googlePlaceInfo?.opening_hours?.weekday_descriptions ?? [];
 
-// 近隣の過去開催店（ユークリッド距離で近い順に5店）
-const nearby = event.geocode?.lat != null && event.geocode?.lon != null
-  ? allEvents
-      .filter(
-        (e) =>
-          e.kai !== event.kai &&
-          e.geocode?.lat != null &&
-          e.geocode?.lon != null
-      )
-      .map((e) => {
-        const dLat = (e.geocode!.lat as number) - (event.geocode!.lat as number);
-        const dLon = (e.geocode!.lon as number) - (event.geocode!.lon as number);
-        return { e, dist: dLat * dLat + dLon * dLon };
-      })
-      .sort((a, b) => a.dist - b.dist)
-      .slice(0, 5)
-      .map((x) => x.e)
-  : [];
+const sortedKais = allEvents.map((e) => e.kai).sort((a, b) => a - b);
+const currentIdx = sortedKais.indexOf(event.kai);
+const prevKai = currentIdx > 0 ? sortedKais[currentIdx - 1] : null;
+const nextKai = currentIdx < sortedKais.length - 1 ? sortedKais[currentIdx + 1] : null;
+const prevEvent = prevKai != null ? allEvents.find((e) => e.kai === prevKai) : null;
+const nextEvent = nextKai != null ? allEvents.find((e) => e.kai === nextKai) : null;
 ---
 
 <Base title={`第${event.kai}回 ${event.storeName} | 福島LOVE会`}>
@@ -355,13 +342,54 @@ const nearby = event.geocode?.lat != null && event.geocode?.lon != null
       </section>
     )}
 
-    {nearby.length > 0 && (
-      <section>
-        <h2>近隣の過去開催店</h2>
-        <div class="grid">
-          {nearby.map((e) => <EventCard event={e} compact={true} />)}
-        </div>
-      </section>
-    )}
+    <nav class="kai-nav">
+      {prevEvent
+        ? <a href={`/events/${prevEvent.kai}/`} class="kai-nav-link kai-nav-prev">
+            <span class="kai-nav-label">← 前の回</span>
+            <span class="kai-nav-kai">第{prevEvent.kai}回</span>
+            <span class="kai-nav-name">{prevEvent.storeName}</span>
+          </a>
+        : <span></span>
+      }
+      {nextEvent
+        ? <a href={`/events/${nextEvent.kai}/`} class="kai-nav-link kai-nav-next">
+            <span class="kai-nav-label">次の回 →</span>
+            <span class="kai-nav-kai">第{nextEvent.kai}回</span>
+            <span class="kai-nav-name">{nextEvent.storeName}</span>
+          </a>
+        : <span></span>
+      }
+    </nav>
   </main>
 </Base>
+
+<style>
+.kai-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0 1rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+}
+.kai-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+  max-width: 48%;
+}
+.kai-nav-link:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface);
+  text-decoration: none;
+}
+.kai-nav-next { text-align: right; }
+.kai-nav-label { font-size: 0.72rem; color: var(--color-accent); font-weight: 700; letter-spacing: 0.05em; }
+.kai-nav-kai   { font-size: 0.78rem; color: var(--color-sub); }
+.kai-nav-name  { font-size: 0.92rem; font-weight: 700; color: var(--color-ink); }
+</style>

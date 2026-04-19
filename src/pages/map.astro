@@ -1,22 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import MapView from '../components/MapView.astro';
+import MapListView from '../components/MapListView.astro';
 import { getEnrichedEvents } from '../lib/data';
 
 const events = await getEnrichedEvents();
-const withCoords = events.filter((e) => e.geocode?.lat != null).length;
 ---
 
 <Base title="マップ | 福島LOVE会">
   <main class="container" style="padding-top: 2rem;">
     <h1>全店マップ</h1>
-    <p>
-      福島LOVE会でこれまで訪れた<strong>{withCoords}店舗</strong>を地図で表示。
-      ピンをクリックすると各回の詳細ページへ。
+    <p style="color: var(--color-sub); font-size: 0.9rem; margin-bottom: 1rem;">
+      これまで訪れた福島縁の店を地図で俯瞰。ピンをクリックすると各回の詳細・写真ページへ。
     </p>
-    <MapView events={events} height="calc(100vh - 260px)" />
-    <p style="color: var(--color-sub); font-size: 0.9rem;">
-      地図タイル: &copy; OpenStreetMap contributors
-    </p>
+    <MapListView events={events} height="calc(100vh - 240px)" />
   </main>
 </Base>
