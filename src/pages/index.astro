@@ -1,14 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import EventCard from '../components/EventCard.astro';
-import StatsHero from '../components/StatsHero.astro';
-import { getEnrichedEvents } from '../lib/data';
-import { computeStats } from '../lib/stats';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import { getEnrichedEvents, type EnrichedEvent } from '../lib/data';
 
 const events = await getEnrichedEvents();
 const latest = events[0];
-const totalStores = events.length;
-const stats = computeStats(events);
+
+// ヒーロー: 最新回 + 過去回からランダム4件（写真がある回のみ対象）
+const HERO_EXTRA = 4;
+const hasHeroImage = (e: EnrichedEvent) =>
+  (e.photos && e.photos.length > 0) || (e.tabelogInfo?.photos?.length ?? 0) > 0;
+
+const pastWithPhotos = events.slice(1).filter(hasHeroImage);
+const shuffled = [...pastWithPhotos].sort(() => Math.random() - 0.5);
+const heroSlides = latest ? [latest, ...shuffled.slice(0, HERO_EXTRA)] : shuffled.slice(0, HERO_EXTRA);
 ---
 
 <Base title="福島LOVE会">
@@ -48,10 +54,10 @@ const stats = computeStats(events);
 
   <main class="container">
 
-    {latest && (
+    {heroSlides.length > 0 && (
       <section>
-        <h2>最新回</h2>
-        <EventCard event={latest} featured={true} />
+        <h2>ハイライト</h2>
+        <HeroCarousel events={heroSlides} />
       </section>
     )}
 
@@ -63,11 +69,6 @@ const stats = computeStats(events);
       <p style="text-align: right; margin-top: 1.5rem;">
         <a class="btn btn-outline" href="/events/">すべての開催記録 →</a>
       </p>
-    </section>
-
-    <section>
-      <h2>数字で見るLOVE会</h2>
-      <StatsHero stats={stats} />
     </section>
 
     <section>

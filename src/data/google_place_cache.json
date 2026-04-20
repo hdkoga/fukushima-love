@@ -58,7 +58,16 @@
     "price_level": null,
     "phone": "+81 3-6450-7177",
     "website": "https://www.instagram.com/sakanawatanabesyoukai?igsh=MTJieHZvOHlydDlncg==",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "120": {
     "place_id": "ChIJLZE2YMKMGGARaHcgxv8gi1o",
@@ -114,12 +123,24 @@
         "土曜日: 16時00分～23時00分",
         "日曜日: 17時30分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6709-9688",
     "website": "https://tabelog.com/tokyo/A1304/A130402/13281340/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "wine_bar",
+      "italian_restaurant",
+      "bar",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "119": {
     "place_id": "ChIJFwgPI17zGGARubarPYY9CeY",
@@ -169,7 +190,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5942-7312",
     "website": "https://www.instagram.com/magaristagram",
-    "business_status": "CLOSED_TEMPORARILY"
+    "business_status": "CLOSED_TEMPORARILY",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "japanese_izakaya_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "118": null,
   "117": {
@@ -226,12 +256,21 @@
         "土曜日: 17時00分～3時00分",
         "日曜日: 17時00分～3時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 80-1055-5268",
     "website": "https://www.instagram.com/yasuragiyasu?igsh=czNmZmdiNnk1ZnBr",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "116": {
     "place_id": "ChIJR-0gJNL1GGARu1EfC_QFJiI",
@@ -269,12 +308,20 @@
         "土曜日: 17時00分～22時00分",
         "日曜日: 17時00分～22時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": null,
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "spanish_restaurant",
+    "types": [
+      "spanish_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "115": {
     "place_id": "ChIJ76jQwSaNGGARkeGNBqhTUpQ",
@@ -330,12 +377,21 @@
         "土曜日: 17時00分～23時00分",
         "日曜日: 17時00分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-6384-1748",
     "website": "http://6chome.sakura.ne.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "japanese_izakaya_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "114": {
     "place_id": "ChIJs56BPaLyGGARVboHsGNCKXE",
@@ -391,12 +447,21 @@
         "土曜日: 17時00分～0時00分",
         "日曜日: 17時00分～0時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": null,
     "website": "https://lin.ee/QCNlIkQ",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "113": null,
   "112": null,
@@ -454,12 +519,20 @@
         "土曜日: 12時00分～14時30分, 17時00分～22時00分",
         "日曜日: 17時00分～22時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5859-0149",
     "website": "https://instagram.com/osakanadining.miyoshi?igshid=YmMyMTA2M2Y=",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "seafood_restaurant",
+    "types": [
+      "seafood_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "110": {
     "place_id": "ChIJUcdYzAWLGGARXOm4JAaNS8w",
@@ -515,12 +588,22 @@
         "土曜日: 17時00分～4時00分",
         "日曜日: 17時00分～4時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-5990-4884",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "yakiniku_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "109": {
     "place_id": "ChIJy7PVnPKMGGARLd2lsg1A5AI",
@@ -581,7 +664,23 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6709-9811",
     "website": "https://burg-holic.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "bar_and_grill",
+      "brewpub",
+      "steak_house",
+      "hamburger_restaurant",
+      "pub",
+      "tex_mex_restaurant",
+      "american_restaurant",
+      "mexican_restaurant",
+      "bar",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "108": {
     "place_id": "ChIJcWAteQDzGGAR32E4S9H8UnM",
@@ -642,7 +741,16 @@
     "price_level": null,
     "phone": "+81 3-5738-7041",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "107": {
     "place_id": "ChIJIVFSe0GLGGAREDsqaaQoSn8",
@@ -698,12 +806,28 @@
         "土曜日: 16時00分～2時00分",
         "日曜日: 16時00分～0時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5728-4741",
     "website": "https://tabelog.com/tokyo/A1303/A130302/13038021/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "spanish_restaurant",
+    "types": [
+      "spanish_restaurant",
+      "japanese_izakaya_restaurant",
+      "tapas_restaurant",
+      "snack_bar",
+      "wine_bar",
+      "bar",
+      "meal_takeaway",
+      "japanese_restaurant",
+      "store",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "106": {
     "place_id": "ChIJG1YTVQBhGGARrJfpNM2L1-M",
@@ -759,12 +883,24 @@
         "土曜日: 17時00分～5時00分",
         "日曜日: 17時00分～5時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 90-3810-7605",
     "website": "https://www.hotpepper.jp/strJ003942895/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "wine_bar",
+      "bar",
+      "bistro",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "105": {
     "place_id": "ChIJ2RTnpGSMGGAR1Z88oqYmMsY",
@@ -825,7 +961,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3556-3310",
     "website": "https://mushintei.jp/?utm_source=GBP&utm_medium=GBP&utm_term=GBP&utm_content=GBP&utm_campaign=GBP",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "104": {
     "place_id": "ChIJZ6dWKMeOGGAR6nLtodSfhys",
@@ -881,12 +1025,23 @@
         "土曜日: 11時30分～14時00分, 17時00分～22時30分",
         "日曜日: 11時30分～14時00分, 17時00分～22時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 50-5448-6268",
     "website": "https://chankobeya.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "seafood_restaurant",
+      "hot_pot_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "103": {
     "place_id": "ChIJ8dms_DiNGGARDVzjx6keuXE",
@@ -947,7 +1102,16 @@
     "price_level": null,
     "phone": "+81 3-3200-0920",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "102": {
     "place_id": "ChIJgx-sTwCTGGARZ-DXY2xomCw",
@@ -1008,7 +1172,18 @@
     "price_level": null,
     "phone": "+81 3-5926-7534",
     "website": "https://www.hotpepper.jp/strJ003942492/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "seafood_restaurant",
+      "yakitori_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "101": {
     "place_id": "ChIJmY5GZBZFGGARO8ycwd4SSng",
@@ -1058,7 +1233,14 @@
     "price_level": null,
     "phone": "+81 90-7229-8818",
     "website": "http://papaya.sunnyday.jp/",
-    "business_status": "CLOSED_TEMPORARILY"
+    "business_status": "CLOSED_TEMPORARILY",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "100": {
     "place_id": "ChIJbVTrWoGMIGARprlT3wlNpJA",
@@ -1077,7 +1259,12 @@
     "price_level": null,
     "phone": null,
     "website": null,
-    "business_status": null
+    "business_status": null,
+    "primary_type": null,
+    "types": [
+      "locality",
+      "political"
+    ]
   },
   "99": {
     "place_id": "ChIJ962NLMGNGGARA3CJ4tcJavk",
@@ -1133,12 +1320,26 @@
         "土曜日: 12時00分～23時00分",
         "日曜日: 12時00分～22時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-6284-2397",
     "website": "https://u-cafe.tokyo/?utm_source=google_maps&utm_medium=organic&utm_campaign=gbp_website",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "cafe",
+    "types": [
+      "cafe",
+      "cafeteria",
+      "japanese_restaurant",
+      "event_venue",
+      "bar",
+      "association_or_organization",
+      "store",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "98": {
     "place_id": "ChIJIdyTmdeIGGARpAeN4p9_gIc",
@@ -1194,12 +1395,22 @@
         "土曜日: 15時00分～23時30分",
         "日曜日: 15時00分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3829-8228",
     "website": "https://taberna-sergio.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "spanish_restaurant",
+    "types": [
+      "spanish_restaurant",
+      "wine_bar",
+      "restaurant",
+      "bar",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "97": {
     "place_id": "ChIJZ2TmJYrzGGARea9K8Jat0c4",
@@ -1255,12 +1466,23 @@
         "土曜日: 18時00分～2時00分",
         "日曜日: 17時00分～1時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-5432-9150",
     "website": "https://tabelog.com/tokyo/A1317/A131706/13260632/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "chinese_restaurant",
+      "italian_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "96": {
     "place_id": "ChIJvfiXuq2NGGARO1-0Mpr1M4E",
@@ -1316,12 +1538,23 @@
         "土曜日: 14時30分～4時00分",
         "日曜日: 14時30分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-6265-9700",
     "website": "https://nngn.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "vegan_restaurant",
+      "vegetarian_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "95": {
     "place_id": "ChIJR-EESZ_0GGARW1iP8Vq1nQk",
@@ -1382,7 +1615,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5787-8133",
     "website": "https://tabelog.com/tokyo/A1317/A131706/13184817/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "94": {
     "place_id": "ChIJq05E9lmMGGARHZZnjpzTNfg",
@@ -1438,12 +1680,21 @@
         "土曜日: 17時00分～22時00分",
         "日曜日: 17時00分～21時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3268-0017",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "yakiniku_restaurant",
+    "types": [
+      "yakiniku_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "93": {
     "place_id": "ChIJ8XJXSyONGGAR1GoSQA7z6Qo",
@@ -1504,7 +1755,16 @@
     "price_level": null,
     "phone": "+81 3-5954-1794",
     "website": "http://washokuya-fukushima.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "92": {
     "place_id": "ChIJOfNKcrGLGGARWKuT46Avz2k",
@@ -1565,7 +1825,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6435-4758",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "91": {
     "place_id": "ChIJx4rzM0mLGGARP2gYa-k0jsY",
@@ -1584,12 +1852,21 @@
         "土曜日: 17時00分～6時00分",
         "日曜日: 17時00分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-6303-2208",
     "website": "https://www.instagram.com/ranman_nakameguro/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "yakiniku_restaurant",
+    "types": [
+      "yakiniku_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "90": {
     "place_id": "ChIJ87LTMOqLGGARpGeeQf9uEXM",
@@ -1650,7 +1927,16 @@
     "price_level": null,
     "phone": "+81 3-3578-0101",
     "website": "http://www.piasis.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "89": {
     "place_id": "ChIJ4V0qbQBPGGARRvBmSsp4H6g",
@@ -1700,7 +1986,15 @@
     "price_level": null,
     "phone": "+81 50-3577-6586",
     "website": "https://loco.ctk-hd.co.jp/",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "barbecue_restaurant",
+    "types": [
+      "barbecue_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "88": {
     "place_id": "ChIJxUlqQmTsGGAR91TG-m15NDE",
@@ -1756,12 +2050,20 @@
         "土曜日: 17時00分～23時00分",
         "日曜日: 17時00分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-3975-4128",
     "website": "http://akatuka1ban.com/shop/detail/shopid/shinano",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "87": {
     "place_id": "ChIJn8InizCLGGAR3SCgLr_aSYU",
@@ -1811,7 +2113,27 @@
     "price_level": null,
     "phone": "+81 3-6303-0040",
     "website": "https://www.instagram.com/mukou3genryodonari/",
-    "business_status": "CLOSED_TEMPORARILY"
+    "business_status": "CLOSED_TEMPORARILY",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "banquet_hall",
+      "wine_bar",
+      "taco_restaurant",
+      "seafood_restaurant",
+      "catering_service",
+      "food_delivery",
+      "event_venue",
+      "bar",
+      "japanese_restaurant",
+      "restaurant",
+      "food_store",
+      "food",
+      "service",
+      "store",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "86": {
     "place_id": "ChIJb3TL5BuNGGARHBTaoskXaUw",
@@ -1867,12 +2189,21 @@
         "土曜日: 17時00分～22時30分",
         "日曜日: 17時00分～22時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 3-3205-4129",
     "website": "https://www.waseda.jp/culture/news/2020/10/06/11192/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "85": {
     "place_id": "ChIJV46HHMCNGGAR0g3CpLE5YsI",
@@ -1933,7 +2264,16 @@
     "price_level": null,
     "phone": null,
     "website": "https://okonomimusashi.my.canva.site/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "84": {
     "place_id": "ChIJ2cTJndKNGGAR1-7l9kgdaQ0",
@@ -1994,7 +2334,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5834-7571",
     "website": "https://www.hotpepper.jp/strJ001042514/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "83": {
     "place_id": "ChIJsaO6RfOOGGARdT_v6lL-Z40",
@@ -2044,7 +2393,16 @@
     "price_level": null,
     "phone": "+81 3-3872-8727",
     "website": "http://kanoya-udon.com/",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "82": {
     "place_id": "ChIJKeY6Z870GGARWjyh4zfqsxI",
@@ -2100,12 +2458,23 @@
         "土曜日: 17時00分～23時00分",
         "日曜日: 17時00分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 80-6341-6041",
     "website": "https://s.tabelog.com/tokyo/A1317/A131702/13211891/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "yakitori_restaurant",
+    "types": [
+      "yakitori_restaurant",
+      "chicken_restaurant",
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "81": {
     "place_id": "ChIJxwvQ8UHzGGARL5hJflTPdi4",
@@ -2161,12 +2530,21 @@
         "土曜日: 19時00分～2時00分",
         "日曜日: 17時00分～0時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 3-5347-2464",
     "website": "http://sundal-kitchen.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "80": {
     "place_id": "ChIJTXIgb2-LGGARwgUGxjDjzbs",
@@ -2222,12 +2600,25 @@
         "土曜日: 11時30分～15時00分, 17時00分～23時30分",
         "日曜日: 11時30分～15時00分, 17時00分～23時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": null,
     "website": "https://brasserietaille.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "japanese_izakaya_restaurant",
+      "wine_bar",
+      "italian_restaurant",
+      "bar",
+      "bistro",
+      "japanese_restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "79": {
     "place_id": "ChIJ2RTnpGSMGGAR1Z88oqYmMsY",
@@ -2288,7 +2679,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3556-3310",
     "website": "https://mushintei.jp/?utm_source=GBP&utm_medium=GBP&utm_term=GBP&utm_content=GBP&utm_campaign=GBP",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "78": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -2349,7 +2748,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "77": {
     "place_id": "ChIJn12G9P2NGGARcdFiiG1NNOs",
@@ -2410,7 +2818,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6384-1314",
     "website": "https://haraku-chi.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "chicken_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "76": {
     "place_id": "ChIJFwgPI17zGGARubarPYY9CeY",
@@ -2460,7 +2878,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5942-7312",
     "website": "https://www.instagram.com/magaristagram",
-    "business_status": "CLOSED_TEMPORARILY"
+    "business_status": "CLOSED_TEMPORARILY",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "japanese_izakaya_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "75": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -2521,7 +2948,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "74": {
     "place_id": "ChIJwWGVGmGMGGARJ__ShVmOt_k",
@@ -2582,7 +3017,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 50-5486-4484",
     "website": "https://goshikiichigaya.gorp.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "73": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -2643,7 +3087,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "72": {
     "place_id": "ChIJX6v_O8aMGGARNi9u01gKoWI",
@@ -2699,12 +3152,21 @@
         "土曜日: 15時30分～23時30分",
         "日曜日: 17時00分～23時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 3-3374-7721",
     "website": "https://www.facebook.com/yoyogiyokocho/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "71": {
     "place_id": "ChIJ8ZQoNcOMGGARVFPQLQMKit4",
@@ -2765,7 +3227,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6380-0505",
     "website": "https://il-leone.net/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "italian_restaurant",
+    "types": [
+      "italian_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "70": null,
   "69": {
@@ -2827,7 +3297,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6384-1314",
     "website": "https://haraku-chi.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "chicken_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "68": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -2888,7 +3368,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "67": null,
   "66": {
@@ -2913,7 +3401,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "65": {
     "place_id": "ChIJOfNKcrGLGGARWKuT46Avz2k",
@@ -2974,7 +3470,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6435-4758",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "64": {
     "place_id": "ChIJ3dZOa2nzGGARluVUFnKb4qU",
@@ -3030,12 +3534,18 @@
         "土曜日: 18時00分～3時00分",
         "日曜日: 12時00分～0時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-3410-3488",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "63": {
     "place_id": "ChIJvfiXuq2NGGARO1-0Mpr1M4E",
@@ -3091,12 +3601,23 @@
         "土曜日: 14時30分～4時00分",
         "日曜日: 14時30分～23時00分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-6265-9700",
     "website": "https://nngn.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "vegan_restaurant",
+      "vegetarian_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "62": {
     "place_id": "ChIJn12G9P2NGGARcdFiiG1NNOs",
@@ -3157,7 +3678,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6384-1314",
     "website": "https://haraku-chi.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "chicken_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "61": {
     "place_id": "ChIJZVSYXDyLGGARj7JvW5Dhctc",
@@ -3181,7 +3712,18 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 50-1721-7705",
     "website": "https://www.kuruma-jp.com/shop/shibuyaminami/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "yakitori_restaurant",
+    "types": [
+      "yakitori_restaurant",
+      "japanese_izakaya_restaurant",
+      "chicken_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "60": {
     "place_id": "ChIJ0SJfLWONGGAR_boNfN9o2Tg",
@@ -3200,12 +3742,19 @@
         "土曜日: 11時00分～22時30分",
         "日曜日: 11時00分～22時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-5292-0977",
     "website": "https://page.line.me/yhn4261k",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "59": null,
   "58": {
@@ -3256,7 +3805,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5925-8144",
     "website": null,
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "57": {
     "place_id": "ChIJe0aEoZuSGGARF_gvxq6UT9Y",
@@ -3317,7 +3875,13 @@
     "price_level": null,
     "phone": "+81 3-6875-7697",
     "website": "https://www.facebook.com/Cafe-Bar-MILI-MILI-1000931443409261/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "56": {
     "place_id": "ChIJpxf73dCMGGARiCtaegyuIlo",
@@ -3378,7 +3942,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": null,
     "website": "https://digiq.jp/portal/experience/73953/0",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "barbecue_restaurant",
+    "types": [
+      "barbecue_restaurant",
+      "barbecue_area",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "55": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -3439,7 +4012,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "restaurant",
+      "bar",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "54": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -3500,7 +4081,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "53": null,
   "52": null,
@@ -3563,7 +4153,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6384-1314",
     "website": "https://haraku-chi.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "chicken_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "50": {
     "place_id": "ChIJMR3xzNmMGGARHqz5tIxunzY",
@@ -3613,7 +4213,19 @@
     "price_level": null,
     "phone": "+81 3-6825-2848",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "dance_hall",
+    "types": [
+      "dance_hall",
+      "live_music_venue",
+      "event_venue",
+      "bar",
+      "sports_school",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "49": {
     "place_id": "ChIJq3FpYWSMGGARjCnoChTHW5k",
@@ -3637,7 +4249,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3239-2566",
     "website": "http://www.mojihei.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "48": null,
   "47": {
@@ -3657,12 +4278,19 @@
         "土曜日: 11時00分～22時30分",
         "日曜日: 11時00分～22時30分"
       ],
-      "open_now": false
+      "open_now": true
     },
     "price_level": null,
     "phone": "+81 3-5292-0977",
     "website": "https://page.line.me/yhn4261k",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "46": {
     "place_id": "ChIJiTHLc-OLGGARWUxm_G5uD5I",
@@ -3723,7 +4351,15 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 3-3242-1107",
     "website": "https://tabelog.com/tokyo/A1302/A130201/13155002/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "thai_restaurant",
+    "types": [
+      "thai_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "45": {
     "place_id": "ChIJ1cmYO2rzGGARBzfRp35gVUA",
@@ -3773,7 +4409,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 50-3373-8767",
     "website": null,
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "44": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -3834,7 +4479,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "43": {
     "place_id": "ChIJMR3xzNmMGGARHqz5tIxunzY",
@@ -3884,7 +4537,19 @@
     "price_level": null,
     "phone": "+81 3-6825-2848",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "dance_hall",
+    "types": [
+      "dance_hall",
+      "live_music_venue",
+      "sports_school",
+      "bar",
+      "restaurant",
+      "food",
+      "event_venue",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "42": {
     "place_id": "ChIJXxElAPuKGGARdggu-KhvMSk",
@@ -3934,7 +4599,18 @@
     "price_level": null,
     "phone": "+81 3-6409-6833",
     "website": "https://r.gnavi.co.jp/gf8w2zkn0000/",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "japanese_izakaya_restaurant",
+      "italian_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "41": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -3995,7 +4671,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "40": {
     "place_id": "ChIJQZH0kdeMGGARJHggm6Hcre4",
@@ -4045,7 +4730,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3207-5653",
     "website": "https://tabelog.com/tokyo/A1304/A130401/13127595/",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "39": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -4106,7 +4800,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "38": {
     "place_id": "ChIJJxxUcU2JGGARUfj9hOgAR2A",
@@ -4167,7 +4869,18 @@
     "price_level": null,
     "phone": "+81 3-6206-2063",
     "website": "https://www.instagram.com/kichiya0711?igsh=eWNqdWc2djEzYXZt",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "restaurant",
+    "types": [
+      "restaurant",
+      "japanese_izakaya_restaurant",
+      "meal_takeaway",
+      "cafe",
+      "japanese_restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "37": {
     "place_id": "ChIJMR3xzNmMGGARHqz5tIxunzY",
@@ -4217,7 +4930,19 @@
     "price_level": null,
     "phone": "+81 3-6825-2848",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "dance_hall",
+    "types": [
+      "dance_hall",
+      "sports_school",
+      "live_music_venue",
+      "bar",
+      "event_venue",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "36": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -4278,7 +5003,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "35": {
     "place_id": "ChIJ70UfMRCMGGAR7JeHGmd8b4E",
@@ -4328,7 +5062,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5244-5244",
     "website": "http://www.aonisai.jp/jimbocho",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
   },
   "34": {
     "place_id": "ChIJLVyfoNmMGGARDb2i6_HEu3k",
@@ -4352,7 +5096,18 @@
     "price_level": null,
     "phone": "+81 3-6228-0465",
     "website": "http://givas.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "karaoke",
+      "night_club",
+      "bar",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "33": {
     "place_id": "ChIJjwtyaFaLGGARiZsRuQlfaRY",
@@ -4389,7 +5144,17 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3461-8885",
     "website": "http://ism.one8only.com/",
-    "business_status": "CLOSED_PERMANENTLY"
+    "business_status": "CLOSED_PERMANENTLY",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "bar",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "32": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -4450,7 +5215,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "31": {
     "place_id": "ChIJMR3xzNmMGGARHqz5tIxunzY",
@@ -4500,7 +5273,19 @@
     "price_level": null,
     "phone": "+81 3-6825-2848",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "dance_hall",
+    "types": [
+      "dance_hall",
+      "live_music_venue",
+      "event_venue",
+      "bar",
+      "sports_school",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "30": {
     "place_id": "ChIJT3al4miNGGARW3E1EGbqyCA",
@@ -4561,7 +5346,15 @@
     "price_level": null,
     "phone": "+81 3-6457-6449",
     "website": "https://yoyaku.tabelog.com/yoyaku/net_booking_form/index?rcd=13201260",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "western_restaurant",
+    "types": [
+      "western_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "29": null,
   "28": {
@@ -4623,7 +5416,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3239-2566",
     "website": "http://www.mojihei.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "27": {
     "place_id": "ChIJGamEFEmLGGARZY7zjC_zAxc",
@@ -4684,7 +5486,16 @@
     "price_level": "PRICE_LEVEL_INEXPENSIVE",
     "phone": "+81 80-5576-9696",
     "website": "https://www.facebook.com/TomatoKitchenYaneura/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "26": {
     "place_id": "ChIJOfNKcrGLGGARWKuT46Avz2k",
@@ -4745,7 +5556,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-6435-4758",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "25": {
     "place_id": "ChIJq3FpYWSMGGARjCnoChTHW5k",
@@ -4806,7 +5625,16 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-3239-2566",
     "website": "http://www.mojihei.com/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "24": null,
   "23": {
@@ -4831,7 +5659,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "22": null,
   "21": {
@@ -4856,7 +5692,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "20": {
     "place_id": "ChIJ7x0shm2NGGARnyCEvLkOdXo",
@@ -4917,7 +5761,16 @@
     "price_level": null,
     "phone": "+81 3-3232-3500",
     "website": "https://umaimonhonten.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "japanese_izakaya_restaurant",
+    "types": [
+      "japanese_izakaya_restaurant",
+      "japanese_restaurant",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "19": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -4941,7 +5794,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "18": null,
   "17": {
@@ -4966,7 +5827,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "point_of_interest",
+      "service",
+      "government_office",
+      "establishment"
+    ]
   },
   "16": {
     "place_id": "ChIJ1eJrrRruGGARGJmNOiZMNhs",
@@ -5027,7 +5896,15 @@
     "price_level": "PRICE_LEVEL_MODERATE",
     "phone": "+81 3-5941-5856",
     "website": "https://sundal.owst.jp/",
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "bar",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "15": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5051,7 +5928,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "14": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5075,7 +5960,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "point_of_interest",
+      "government_office",
+      "service",
+      "establishment"
+    ]
   },
   "13": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5099,7 +5992,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "12": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5123,7 +6024,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "11": null,
   "10": {
@@ -5148,7 +6057,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "9": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5172,7 +6089,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "8": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5196,7 +6121,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "7": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5220,7 +6153,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "6": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5244,7 +6185,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "5": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5268,7 +6217,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "4": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5292,7 +6249,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ]
   },
   "3": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5316,7 +6281,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "2": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5340,7 +6313,15 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "government_office",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ]
   },
   "1": {
     "place_id": "ChIJC-_TS4uLGGARSLibqpBQO1Q",
@@ -5364,6 +6345,14 @@
     "price_level": null,
     "phone": "+81 3-5281-0123",
     "website": null,
-    "business_status": "OPERATIONAL"
+    "business_status": "OPERATIONAL",
+    "primary_type": "government_office",
+    "types": [
+      "police",
+      "point_of_interest",
+      "service",
+      "government_office",
+      "establishment"
+    ]
   }
 }

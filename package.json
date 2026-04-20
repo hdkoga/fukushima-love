@@ -11,7 +11,8 @@
     "setup": "npm install && npx playwright install chromium"
   },
   "dependencies": {
-    "astro": "^4.16.0",
+    "astro": "^4.16.19",
+    "esbuild": "^0.21.5",
     "leaflet": "^1.9.4"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 ---
 import type { EnrichedEvent } from '../lib/data';
-import { formatDate, categoryMeta, cleanSnippet } from '../lib/data';
+import { formatDate, cleanSnippet } from '../lib/data';
 
 interface Props {
   event: EnrichedEvent;
@@ -13,7 +13,6 @@ const hasPost = event.post && event.post.post_url;
 const photos = event.photos ?? [];
 const hasPhotos = photos.length > 0;
 const isInstaEmbed = event.instagram && (event.instagram.includes('/p/') || event.instagram.includes('/reel/'));
-const cat = event.notes ? categoryMeta(event.notes) : null;
 const snippet = cleanSnippet(event.post?.text_snippet);
 
 // サムネイル優先順：イベント写真 → 食べログ写真 → null
@@ -27,7 +26,12 @@ const thumb = hasPhotos
   <a href={`/events/${event.kai}/`} class="ec-card">
     <div class="ec-thumb">
       {thumb
-        ? <img src={thumb} alt={event.storeName} loading="lazy" />
+        ? <img
+            src={thumb}
+            alt={event.storeName}
+            loading="lazy"
+            data-photos={hasPhotos && photos.length > 1 ? JSON.stringify(photos) : null}
+          />
         : <div class="ec-no-photo">🍶</div>
       }
       <span class="ec-kai-badge">第{event.kai}回</span>
@@ -73,8 +77,13 @@ const thumb = hasPhotos
       <span>📅 <strong>{formatDate(event.date)}</strong></span>
       {event.address && <span>📍 {event.address}</span>}
     </div>
-    {event.notes && cat && (
-      <p style="margin:0.3rem 0;color:var(--color-sub);font-size:0.88rem;">{cat.icon} {event.notes}</p>
+    {event.tags.genres.length > 0 && (
+      <div style="margin:0.3rem 0;display:flex;flex-wrap:wrap;gap:0.3rem;">
+        {event.tags.genres.map((g) => <span class="tag-chip">{g}</span>)}
+      </div>
+    )}
+    {event.notes && (
+      <p style="margin:0.3rem 0;color:var(--color-sub);font-size:0.88rem;">{event.notes}</p>
     )}
     {snippet && <p style="margin:0.4rem 0;color:var(--color-sub);font-size:0.85rem;">💬 {snippet}</p>}
     <div style="margin-top:0.8rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
@@ -85,6 +94,20 @@ const thumb = hasPhotos
     </div>
   </article>
 )}
+
+<script>
+  // ec-card 内サムネを data-photos からランダム選定して差し替え
+  document.querySelectorAll<HTMLImageElement>('.ec-thumb img[data-photos]').forEach((img) => {
+    try {
+      const photos = JSON.parse(img.dataset.photos || '[]') as string[];
+      if (!Array.isArray(photos) || photos.length < 2) return;
+      const pick = photos[Math.floor(Math.random() * photos.length)];
+      if (pick && pick !== img.getAttribute('src')) img.src = pick;
+    } catch {
+      /* parse失敗時は何もしない */
+    }
+  });
+</script>
 
 <style>
 /* ── コンパクトカード ─────────────── */

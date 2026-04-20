@@ -1,10 +1,7 @@
 import type { EnrichedEvent } from './data';
-import { categoryMeta } from './data';
 
-export interface CategoryStat {
+export interface GenreStat {
   label: string;
-  icon: string;
-  color: string;
   count: number;
 }
 
@@ -15,7 +12,7 @@ export interface LoveKaiStats {
   firstDate: string;
   latestDate: string;
   totalPhotos: number;
-  categoryBreakdown: CategoryStat[];
+  genreBreakdown: GenreStat[];
   repeatStores: number;
   avgGoogleRating: number | null;
 }
@@ -53,18 +50,16 @@ export function computeStats(events: EnrichedEvent[]): LoveKaiStats {
 
   const totalPhotos = events.reduce((sum, e) => sum + (e.photos?.length ?? 0), 0);
 
-  const catCount = new Map<string, CategoryStat>();
+  const genreCount = new Map<string, number>();
   for (const e of events) {
-    if (!e.notes) continue;
-    const c = categoryMeta(e.notes);
-    const existing = catCount.get(c.label);
-    if (existing) {
-      catCount.set(c.label, { ...existing, count: existing.count + 1 });
-    } else {
-      catCount.set(c.label, { label: c.label, icon: c.icon, color: c.color, count: 1 });
+    for (const g of e.tags.genres) {
+      if (!g) continue;
+      genreCount.set(g, (genreCount.get(g) ?? 0) + 1);
     }
   }
-  const categoryBreakdown = [...catCount.values()].sort((a, b) => b.count - a.count);
+  const genreBreakdown: GenreStat[] = [...genreCount.entries()]
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count);
 
   const storeCount = new Map<string, number>();
   for (const e of events) {
@@ -88,7 +83,7 @@ export function computeStats(events: EnrichedEvent[]): LoveKaiStats {
     firstDate,
     latestDate,
     totalPhotos,
-    categoryBreakdown,
+    genreBreakdown,
     repeatStores,
     avgGoogleRating,
   };

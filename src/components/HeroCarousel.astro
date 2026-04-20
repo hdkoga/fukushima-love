@@ -1,0 +1,297 @@
+---
+import type { EnrichedEvent } from '../lib/data';
+import { formatDate } from '../lib/data';
+
+interface Props {
+  events: EnrichedEvent[];
+  intervalMs?: number;
+}
+
+const { events, intervalMs = 5000 } = Astro.props;
+
+const slides = events.map((e) => {
+  const photos = e.photos ?? [];
+  const thumb = photos[0] ?? e.tabelogInfo?.photos?.[0] ?? null;
+  return {
+    kai: e.kai,
+    storeName: e.storeName,
+    date: e.date,
+    address: e.address ?? '',
+    thumb,
+  };
+});
+---
+
+<div class="hero-carousel" data-interval={intervalMs} aria-roledescription="carousel" aria-label="開催回ハイライト">
+  <div class="hc-track">
+    {slides.map((s, i) => (
+      <a
+        href={`/events/${s.kai}/`}
+        class:list={['hc-slide', { 'is-active': i === 0 }]}
+        data-index={i}
+        aria-hidden={i === 0 ? 'false' : 'true'}
+        tabindex={i === 0 ? 0 : -1}
+      >
+        <div class="hc-img">
+          {s.thumb
+            ? <img src={s.thumb} alt={s.storeName} loading={i === 0 ? 'eager' : 'lazy'} />
+            : <div class="hc-no-photo">🍶</div>
+          }
+          <div class="hc-overlay">
+            <span class="hc-kai-badge">第{s.kai}回</span>
+            <h2 class="hc-title">{s.storeName}</h2>
+            <p class="hc-meta">
+              {formatDate(s.date)}
+              {s.address && <span> · {s.address.replace(/^東京都/, '')}</span>}
+            </p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {slides.length > 1 && (
+    <>
+      <button type="button" class="hc-arrow hc-arrow--prev" aria-label="前のスライド">‹</button>
+      <button type="button" class="hc-arrow hc-arrow--next" aria-label="次のスライド">›</button>
+
+      <div class="hc-dots" role="tablist" aria-label="スライド選択">
+        {slides.map((_, i) => (
+          <button
+            type="button"
+            class:list={['hc-dot', { 'is-active': i === 0 }]}
+            data-index={i}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`スライド ${i + 1}`}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
+
+<script>
+  function initHeroCarousel(root: HTMLElement) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.hc-slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('.hc-dot'));
+    const prev = root.querySelector<HTMLButtonElement>('.hc-arrow--prev');
+    const next = root.querySelector<HTMLButtonElement>('.hc-arrow--next');
+    const intervalMs = Number(root.dataset.interval) || 5000;
+
+    if (slides.length <= 1) return;
+
+    let current = 0;
+    let timer: number | undefined;
+    let paused = false;
+
+    const show = (idx: number) => {
+      const n = slides.length;
+      const next = ((idx % n) + n) % n;
+      slides.forEach((s, i) => {
+        const active = i === next;
+        s.classList.toggle('is-active', active);
+        s.setAttribute('aria-hidden', active ? 'false' : 'true');
+        s.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      dots.forEach((d, i) => {
+        const active = i === next;
+        d.classList.toggle('is-active', active);
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      current = next;
+    };
+
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => {
+        if (!paused) show(current + 1);
+      }, intervalMs);
+    };
+    const stop = () => {
+      if (timer !== undefined) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    };
+
+    prev?.addEventListener('click', (e) => { e.preventDefault(); show(current - 1); start(); });
+    next?.addEventListener('click', (e) => { e.preventDefault(); show(current + 1); start(); });
+    dots.forEach((d) => {
+      d.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = Number(d.dataset.index);
+        if (!Number.isNaN(idx)) { show(idx); start(); }
+      });
+    });
+
+    root.addEventListener('mouseenter', () => { paused = true; });
+    root.addEventListener('mouseleave', () => { paused = false; });
+    root.addEventListener('focusin', () => { paused = true; });
+    root.addEventListener('focusout', () => { paused = false; });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    start();
+  }
+
+  document.querySelectorAll<HTMLElement>('.hero-carousel').forEach(initHeroCarousel);
+</script>
+
+<style>
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.hc-track {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #f0f0f0;
+}
+
+.hc-slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
+.hc-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.hc-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hc-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.hc-no-photo {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  background: #f5f5f5;
+}
+
+.hc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.25) 50%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+}
+
+.hc-kai-badge {
+  align-self: flex-start;
+  background: #e63329;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.3em 0.7em;
+  text-transform: uppercase;
+}
+
+.hc-title {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0.5em 0 0.2em;
+  line-height: 1.2;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  letter-spacing: 0.02em;
+}
+
+.hc-meta {
+  color: rgba(255,255,255,0.78);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+/* ── 矢印 ────────────────────────────── */
+.hc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: background 0.16s ease;
+  padding: 0;
+}
+.hc-arrow:hover { background: rgba(0,0,0,0.7); }
+.hc-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.hc-arrow--prev { left: 0.75rem; }
+.hc-arrow--next { right: 0.75rem; }
+
+/* ── ドット ──────────────────────────── */
+.hc-dots {
+  position: absolute;
+  bottom: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 3;
+}
+.hc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.16s ease;
+}
+.hc-dot:hover { background: rgba(255,255,255,0.75); }
+.hc-dot.is-active {
+  background: #e63329;
+  transform: scale(1.15);
+}
+.hc-dot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ── レスポンシブ ────────────────────── */
+@media (max-width: 640px) {
+  .hc-overlay { padding: 1rem; }
+  .hc-title { font-size: 1.3rem; }
+  .hc-meta { font-size: 0.72rem; }
+  .hc-arrow {
+    width: 36px; height: 36px;
+    font-size: 1.3rem;
+  }
+  .hc-arrow--prev { left: 0.4rem; }
+  .hc-arrow--next { right: 0.4rem; }
+  .hc-dot { width: 8px; height: 8px; }
+}
+</style>

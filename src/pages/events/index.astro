@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getEnrichedEvents, formatDate, categoryFromNotes } from '../../lib/data';
+import { getEnrichedEvents, formatDate } from '../../lib/data';
 
 const events = await getEnrichedEvents();
 ---
@@ -12,7 +12,6 @@ const events = await getEnrichedEvents();
 
     <div id="event-list">
       {events.map((e) => {
-        const cat = categoryFromNotes(e.notes);
         const hasFb = !!(e.post && e.post.post_url);
         return (
           <div class="event-row">
@@ -32,9 +31,11 @@ const events = await getEnrichedEvents();
                 {e.instagram && <a class="link-icon" href={e.instagram} target="_blank" rel="noopener" title="Instagram">In</a>}
                 {e.googleReview && <a class="link-icon" href={e.googleReview} target="_blank" rel="noopener" title="Google口コミ" style="background:#e8f0fe;color:#1a73e8;">G</a>}
               </span>
-              <span class="tag" style="margin-left: 0.3em; background: #e0d7f0; color: #5c4b8a;">
-                {cat}
-              </span>
+              {e.tags.genres.length > 0 && (
+                <span style="margin-left: 0.3em; display: inline-flex; flex-wrap: wrap; gap: 0.3em; vertical-align: middle;">
+                  {e.tags.genres.map((g) => <span class="tag-chip">{g}</span>)}
+                </span>
+              )}
               <div style="color: var(--color-sub); font-size: 0.9rem;">
                 {formatDate(e.date)}
                 {e.address && <> ・ {e.address}</>}

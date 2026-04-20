@@ -51,13 +51,12 @@ const { stats } = Astro.props;
   )}
 </div>
 
-{stats.categoryBreakdown.length > 0 && (
+{stats.genreBreakdown.length > 0 && (
   <div class="stats-cat-row">
-    {stats.categoryBreakdown.map((c) => (
-      <div class="stats-cat-pill" style={`--cat-color:${c.color};`}>
-        <span class="stats-cat-icon">{c.icon}</span>
-        <span class="stats-cat-label">{c.label}</span>
-        <span class="stats-cat-count">{c.count}店</span>
+    {stats.genreBreakdown.map((g) => (
+      <div class="stats-cat-pill">
+        <span class="stats-cat-label">{g.label}</span>
+        <span class="stats-cat-count">{g.count}店</span>
       </div>
     ))}
   </div>

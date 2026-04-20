@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import { FB_GROUP_URL } from '../lib/sheet';
 ---
 
 <Base title="福島LOVE会について">
@@ -12,43 +11,167 @@ import { FB_GROUP_URL } from '../lib/sheet';
       毎月1回、<strong>福島に縁のあるお店</strong>で飲み会を開催しています。
     </p>
 
-    <h2>お店の選び方</h2>
-    <p>会の趣旨に沿って、以下のいずれかに当てはまる店を選んでいます:</p>
-    <ul>
-      <li>店主・店長・料理長が福島県出身</li>
-      <li>福島県の郷土料理を扱っている</li>
-      <li>福島県産の食材を積極的に使っている</li>
-      <li>福島県と深い関わりがある（産直、支援活動など）</li>
-    </ul>
-
-    <h2>このサイトの使い方</h2>
-    <ul>
-      <li>
-        <strong><a href="/events/">開催記録</a></strong> —
-        これまで訪れた全店舗の一覧。店名・住所・メモで検索可能
-      </li>
-      <li>
-        <strong><a href="/map/">マップ</a></strong> —
-        全店舗を地図上で俯瞰。クリックで各回の詳細と当日写真へ
-      </li>
-    </ul>
-
-    <h2>参加方法・お問い合わせ</h2>
+    <h2>はじめての方へ（参加のご案内）</h2>
     <p>
-      Facebookグループへの参加申請をお願いします。
-      福島とのご縁（出身・家族・趣味・思い出など）を書いていただけるとスムーズです。
+      毎月1回、都内近郊の「福島にゆかりのある飲食店」に集まり、美味しいご飯とお酒を楽しむゆるやかなコミュニティです。
     </p>
     <p>
-      <a class="btn" href={FB_GROUP_URL} target="_blank" rel="noopener">
-        Facebookグループへ →
-      </a>
+      「新しく参加してみたいけれど、どんな雰囲気かわからない…」という方に向けて、よくある質問と参加の手順をまとめました。
     </p>
 
-    <h2>データソース</h2>
-    <ul>
-      <li>店舗情報: 参加者で共有しているGoogleスプレッドシート</li>
-      <li>開催写真: Facebookグループ（公開グループのため非メンバーも閲覧可）</li>
-      <li>地図: OpenStreetMap + Leaflet</li>
-    </ul>
+    <h3>参加への3ステップ</h3>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">①</div>
+        <div class="step-body">
+          <strong>FacebookグループまたはInstagramをフォロー</strong>
+          <p>飲み会の告知・開催記録が共有されています。</p>
+          <ul>
+            <li><strong>Facebook:</strong> <a href="https://www.facebook.com/groups/296655063832420" target="_blank" rel="noopener">福島LOVE会グループ</a></li>
+            <li><strong>Instagram:</strong> <a href="https://www.instagram.com/love_fukushima_2014" target="_blank" rel="noopener">@love_fukushima_2014</a></li>
+            <li><strong>YouTube:</strong> <a href="https://www.youtube.com/@LOVE-kh5vv" target="_blank" rel="noopener">福島LOVE会 公式チャンネル</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">②</div>
+        <div class="step-body">
+          <strong>イベント告知をチェック</strong>
+          <p>Instagramで個別にメッセージをいただければ、次回の開催店と日時が決まりましたら幹事からご案内いたします。</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">③</div>
+        <div class="step-body">
+          <strong>当日、お店で乾杯！</strong>
+          <p>時間になったら直接お店へお越しください。「初参加です」と幹事や周りの方に伝えていただければ、しっかりサポートします。</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h2>よくあるご質問</h2>
+
+    <div class="faq-list">
+      <div class="faq">
+        <p class="faq-q">Q. 福島県出身じゃなくても参加できますか？</p>
+        <p class="faq-a"><strong>A. もちろんです！大歓迎です。</strong><br>
+        「旅行で行って好きになった」「福島のお酒（日本酒）が好き」「配偶者が福島出身」など、福島への愛や興味があればどなたでも参加OKです。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. 一人での参加でも浮きませんか？</p>
+        <p class="faq-a"><strong>A. 全く問題ありません！</strong><br>
+        毎回、一人でふらっと参加する方もたくさんいます。「福島」という共通の話題があるので、初対面でもすぐに打ち解けられるのがこの会の良いところです。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. お酒が飲めなくても（弱くても）大丈夫ですか？</p>
+        <p class="faq-a"><strong>A. 大丈夫です！食べるの専門も大歓迎です。</strong><br>
+        美味しい福島の郷土料理を楽しむことも、この会の大きな目的です。ソフトドリンクでワイワイ楽しんでいるメンバーもいます。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. 毎回どのくらいの人数が集まるのですか？</p>
+        <p class="faq-a"><strong>A. だいたい10〜20人くらいです。</strong><br>
+        こぢんまりとしたお店でアットホームに飲む月もあれば、少し広めのお店でワイワイする月もあります。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. 参加者の年齢層はどのくらいですか？</p>
+        <p class="faq-a"><strong>A. 20代から50代まで、幅広いです。</strong><br>
+        職業も年代もバラバラですが、みんなフランクに飲んでいます。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. 参加費はいくらくらいですか？</p>
+        <p class="faq-a"><strong>A. だいたい5,000〜6,000円程度です。</strong><br>
+        基本的には割り勘（明朗会計）です。イベント告知の際に参加費をお知らせしています。</p>
+      </div>
+
+      <div class="faq">
+        <p class="faq-q">Q. 途中参加や途中退出はできますか？</p>
+        <p class="faq-a"><strong>A. 事前にご連絡いただければ可能です。</strong><br>
+        お仕事の都合で遅れてくる方もいらっしゃいます。コース料理等の場合は会費が全額かかることもあるため、イベントページで事前にご相談ください。</p>
+      </div>
+    </div>
+
   </main>
 </Base>
+
+<style>
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-num {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #e63329;
+  flex-shrink: 0;
+  width: 2rem;
+  line-height: 1.3;
+}
+
+.step-body {
+  flex: 1;
+}
+
+.step-body p {
+  margin: 0.3rem 0 0.5rem;
+  color: var(--color-sub);
+  font-size: 0.95rem;
+}
+
+.step-body ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.step-body li {
+  margin-bottom: 0.25rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2.5rem 0;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.25rem 0;
+}
+
+.faq-q {
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #111;
+}
+
+.faq-a {
+  margin: 0;
+  line-height: 1.75;
+  color: #444;
+}
+</style>

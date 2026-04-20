@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getEnrichedEvents, formatDate, categoryMeta, cleanSnippet, priceLevelToYen } from '../../lib/data';
+import { getEnrichedEvents, formatDate, cleanSnippet, priceLevelToYen } from '../../lib/data';
 import { GOOGLE_MAPS_API_KEY } from '../../lib/sheet';
 
 export async function getStaticPaths() {
@@ -12,8 +12,11 @@ export async function getStaticPaths() {
 }
 
 const { event, allEvents } = Astro.props;
-const cat = categoryMeta(event.notes);
 const snippet = cleanSnippet(event.post?.text_snippet);
+const tagChips: string[] = [];
+for (const g of event.tags.genres) tagChips.push(g);
+if (event.tags.origin) tagChips.push(`店主：${event.tags.origin}`);
+if (event.tags.scene !== '通常') tagChips.push(event.tags.scene);
 const priceYen = priceLevelToYen(event.googlePlaceInfo?.price_level);
 const weekdayDescriptions = event.googlePlaceInfo?.opening_hours?.weekday_descriptions ?? [];
 
@@ -42,14 +45,14 @@ const nextEvent = nextKai != null ? allEvents.find((e) => e.kai === nextKai) : n
       <a href="/events/">← 開催記録一覧</a>
     </p>
 
-    {event.notes && (
-      <div class={`fukushima-point ${cat.cssClass}`}>
-        <span class="fukushima-point-badge" style={`--cat-color:${cat.color};`}>
-          <span class="fukushima-point-icon">{cat.icon}</span>
-          <span class="fukushima-point-label">{cat.label}</span>
-        </span>
-        <p class="fukushima-point-text">{event.notes}</p>
+    {tagChips.length > 0 && (
+      <div class="tag-chips">
+        {tagChips.map((t) => <span class="tag-chip">{t}</span>)}
       </div>
+    )}
+
+    {event.notes && (
+      <p class="event-notes">{event.notes}</p>
     )}
 
     {snippet && (

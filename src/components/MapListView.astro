@@ -1,6 +1,5 @@
 ---
 import type { EnrichedEvent } from '../lib/data';
-import { categoryFromNotes, categoryMeta } from '../lib/data';
 
 interface Props {
   events: EnrichedEvent[];
@@ -12,7 +11,6 @@ const { events, height = '540px' } = Astro.props;
 const items = events
   .filter((e) => e.geocode?.lat != null && e.geocode?.lon != null)
   .map((e) => {
-    const cat = categoryMeta(e.notes);
     const thumb =
       e.photos?.[0] ??
       e.googlePlaceInfo?.photos?.[0] ??
@@ -27,10 +25,7 @@ const items = events
       lat: e.geocode!.lat as number,
       lon: e.geocode!.lon as number,
       postUrl: e.post?.post_url ?? '',
-      category: categoryFromNotes(e.notes),
-      catColor: cat.color,
-      catIcon: cat.icon,
-      catLabel: cat.label,
+      genres: e.tags.genres,
       thumb,
       rating: e.googlePlaceInfo?.rating ?? null,
       tabelogScore: e.tabelogInfo?.score ?? null,
@@ -103,12 +98,20 @@ const itemsJson = JSON.stringify(items);
     font-weight: 600;
     margin: 0.1rem 0;
   }
-  .mpl-cat {
-    font-size: 0.72rem;
-    color: var(--color-sub);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.2em;
+  .mpl-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    margin-top: 0.15rem;
+  }
+  .mpl-genre-chip {
+    font-size: 0.68rem;
+    padding: 0.1em 0.5em;
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
   }
   .mpl-notes {
     font-size: 0.75rem;
@@ -150,10 +153,11 @@ const itemsJson = JSON.stringify(items);
               ★ {item.rating ?? item.tabelogScore}
             </div>
           )}
-          <div class="mpl-cat">
-            <span>{item.catIcon}</span>
-            <span>{item.catLabel}</span>
-          </div>
+          {item.genres.length > 0 && (
+            <div class="mpl-genres">
+              {item.genres.map((g) => <span class="mpl-genre-chip">{g}</span>)}
+            </div>
+          )}
           {item.notes && <div class="mpl-notes">{item.notes}</div>}
         </div>
       </div>
@@ -218,10 +222,9 @@ const itemsJson = JSON.stringify(items);
         lat += r * Math.sin(angle);
         lon += r * Math.cos(angle);
       }
-      const catClass = p.category === '店主が福島出身' ? 'fl-pin-shusshin' : p.category === '福島料理' ? 'fl-pin-ryouri' : 'fl-pin-other';
       const icon = L.divIcon({
         className: '',
-        html: `<div class="fl-pin ${catClass}"><span class="fl-pin-inner">${p.kai}</span></div>`,
+        html: `<div class="fl-pin fl-pin-default"><span class="fl-pin-inner">${p.kai}</span></div>`,
         iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -24],
       });
       const marker = L.marker([lat, lon], { icon });

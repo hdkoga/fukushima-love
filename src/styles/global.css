@@ -13,9 +13,7 @@
   color: #fff; font-weight: 700; font-size: 11px;
 }
 .fl-pin-inner { transform: rotate(45deg); }
-.fl-pin-shusshin { background: #d04a3a; }
-.fl-pin-ryouri   { background: #2ca05a; }
-.fl-pin-other    { background: #6a7fb3; }
+.fl-pin-default { background: #e63329; }
 
 :root {
   /* Colors */
@@ -902,39 +900,29 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
 .hitokoto-source a { color: var(--color-sub); }
 .hitokoto-source a:hover { color: var(--color-accent); }
 
-/* ── 福島ポイント ─────────────────────────────────────────── */
-.fukushima-point {
+/* ── タグチップ ───────────────────────────────────────────── */
+.tag-chips {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 1rem;
-  margin: 1rem 0;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
+  gap: 0.4rem;
+  margin: 0.9rem 0 0.4rem;
 }
-.fukushima-point-badge {
+.tag-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.3em;
-  background: color-mix(in srgb, var(--cat-color) 12%, transparent);
-  color: var(--cat-color);
   padding: 0.25em 0.75em;
   border-radius: 999px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  flex-shrink: 0;
-  border: 1px solid color-mix(in srgb, var(--cat-color) 30%, transparent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
 }
-.fukushima-point-icon { font-size: 0.95rem; }
-.fukushima-point-text {
-  margin: 0;
+.event-notes {
+  margin: 0.4rem 0 0.8rem;
   color: var(--color-ink);
   font-size: 0.92rem;
-  flex: 1;
-  min-width: 0;
 }
 
 /* ── Place info（営業時間・予算・電話・公式サイト） ───────── */
@@ -1071,18 +1059,16 @@ h3 { font-size: 1.1rem; margin: 1.2em 0 0.4em; }
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
-  background: color-mix(in srgb, var(--cat-color) 10%, transparent);
-  color: var(--cat-color);
+  background: var(--color-surface);
+  color: var(--color-ink);
   padding: 0.3em 0.85em;
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 700;
-  border: 1px solid color-mix(in srgb, var(--cat-color) 25%, transparent);
+  border: 1px solid var(--color-border);
 }
-.stats-cat-icon { font-size: 1rem; }
 .stats-cat-count {
-  color: var(--color-ink);
-  opacity: 0.85;
+  color: var(--color-sub);
   margin-left: 0.2em;
   font-weight: 500;
 }

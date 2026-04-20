@@ -9,6 +9,7 @@ import tabelogCacheRaw from '../data/tabelog_cache.json';
 import googlePlaceCacheRaw from '../data/google_place_cache.json';
 import type { EventRow } from './sheet';
 import { fetchEvents } from './sheet';
+import { getTags, type EventTags } from './tags';
 
 export interface PostInfo {
   post_id: string;
@@ -82,6 +83,7 @@ export interface EnrichedEvent extends EventRow {
   tabelogInfo: TabelogInfo | null;
   googlePlaceInfo: GooglePlaceInfo | null;
   instagramPostUrl: string;
+  tags: EventTags;
 }
 
 const postsMap: Record<string, PostInfo> = postsByKai as Record<string, PostInfo>;
@@ -126,7 +128,8 @@ export async function getEnrichedEvents(): Promise<EnrichedEvent[]> {
     const googlePlaceInfo = (rawGooglePlace && (rawGooglePlace.rating || rawGooglePlace.reviews?.length || rawGooglePlace.photos?.length)) ? rawGooglePlace : null;
     const instagramPostUrl = instagramPosts[String(e.kai)] ?? '';
     const youtubeUrl = youtubeUrls[String(e.kai)] ?? youtube;
-    return { ...e, googleReview, tabelog, instagram, youtube: youtubeUrl, post: mergedPost, geocode, photos, tabelogOgp, tabelogInfo, googlePlaceInfo, instagramPostUrl };
+    const tags = getTags(e.kai, e.storeName, e.notes);
+    return { ...e, googleReview, tabelog, instagram, youtube: youtubeUrl, post: mergedPost, geocode, photos, tabelogOgp, tabelogInfo, googlePlaceInfo, instagramPostUrl, tags };
   });
 }
 
@@ -136,28 +139,6 @@ export function formatDate(s: string): string {
   if (!m) return s;
   const [, y, mo, d] = m;
   return `${y}年${mo}月${d}日`;
-}
-
-export interface CategoryMeta {
-  label: string;
-  icon: string;
-  color: string;
-  cssClass: string;
-}
-
-export function categoryMeta(notes: string): CategoryMeta {
-  if (notes && /出身|出生|福島県.*生まれ/.test(notes)) {
-    return { label: '店主が福島出身', icon: '🏔️', color: '#e63329', cssClass: 'cat-origin' };
-  }
-  if (notes && /福島料理|郷土|いわき料理|会津料理/.test(notes)) {
-    return { label: '福島料理', icon: '🍶', color: '#2bb673', cssClass: 'cat-cuisine' };
-  }
-  return { label: 'その他の福島縁', icon: '🌸', color: '#4a8df5', cssClass: 'cat-other' };
-}
-
-export function categoryFromNotes(notes: string): string {
-  if (!notes) return 'その他';
-  return categoryMeta(notes).label;
 }
 
 export function cleanSnippet(text: string | undefined | null): string {

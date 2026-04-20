@@ -1,6 +1,5 @@
 ---
 import type { EnrichedEvent } from '../lib/data';
-import { categoryFromNotes } from '../lib/data';
 
 interface Props {
   events: EnrichedEvent[];
@@ -21,64 +20,16 @@ const pins = events
     lat: e.geocode!.lat as number,
     lon: e.geocode!.lon as number,
     postUrl: e.post?.post_url ?? '',
-    category: categoryFromNotes(e.notes),
   }));
 
 const pinsJson = JSON.stringify(pins);
 const focusJson = JSON.stringify(focusKai ?? null);
 ---
 
-<style>
-  .fl-pin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    border: 2px solid #fff;
-    color: #fff;
-    font-weight: 700;
-    font-size: 11px;
-  }
-  .fl-pin-inner {
-    transform: rotate(45deg);
-  }
-  .fl-pin-shusshin { background: #d04a3a; }
-  .fl-pin-ryouri { background: #2ca05a; }
-  .fl-pin-other { background: #6a7fb3; }
-  .map-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    font-size: 0.85rem;
-    color: var(--color-sub);
-    margin: 0.4rem 0 0.8rem;
-  }
-  .map-legend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3em;
-  }
-  .map-legend .dot {
-    display: inline-block;
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 50%;
-  }
-</style>
-
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
-<div class="map-legend">
-  <span><span class="dot" style="background: #d04a3a;"></span>店主が福島出身</span>
-  <span><span class="dot" style="background: #2ca05a;"></span>福島料理</span>
-  <span><span class="dot" style="background: #6a7fb3;"></span>その他の福島縁</span>
-</div>
 <div id="fukushima-love-map" class="map-container" style={`height: ${height};`}></div>
 
 {pins.length === 0 && (
@@ -165,13 +116,9 @@ const focusJson = JSON.stringify(focusKai ?? null);
         lat = p.lat + r * Math.sin(angle);
         lon = p.lon + r * Math.cos(angle);
       }
-      const catClass =
-        p.category === '店主が福島出身' ? 'fl-pin-shusshin' :
-        p.category === '福島料理' ? 'fl-pin-ryouri' :
-        'fl-pin-other';
       const icon = L.divIcon({
         className: '',
-        html: `<div class="fl-pin ${catClass}"><span class="fl-pin-inner">${p.kai}</span></div>`,
+        html: `<div class="fl-pin fl-pin-default"><span class="fl-pin-inner">${p.kai}</span></div>`,
         iconSize: [28, 28],
         iconAnchor: [14, 28],
         popupAnchor: [0, -24],
