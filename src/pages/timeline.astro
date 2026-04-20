@@ -4,239 +4,309 @@ import { getEnrichedEvents, formatDate } from '../lib/data';
 
 const events = await getEnrichedEvents();
 
-// 年ごとにグループ化
+// 年ごとにグループ化（昇順）
 const byYear = new Map<number, typeof events>();
-for (const e of events) {
+for (const e of [...events].reverse()) {
   const m = e.date.match(/(\d{4})/);
   if (!m) continue;
   const year = Number(m[1]);
   if (!byYear.has(year)) byYear.set(year, []);
   byYear.get(year)!.push(e);
 }
+const years = [...byYear.keys()].sort((a, b) => b - a);
 
-// 年を昇順ソート
-const years = [...byYear.keys()].sort((a, b) => a - b);
+const isMilestone = (kai: number) => kai % 10 === 0;
 
-// 節目回（10の倍数）
-const MILESTONE_MOD = 10;
-const isMilestone = (kai: number) => kai % MILESTONE_MOD === 0;
+// 各回のサムネ候補（FB写真 + 食べログ写真を結合）
+function getPhotos(e: (typeof events)[0]): string[] {
+  const all = [
+    ...e.photos,
+    ...(e.tabelogInfo?.photos ?? []),
+  ];
+  return all.filter(Boolean);
+}
 ---
 
 <Base title="タイムライン | 福島LOVE会">
-  <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
-    <h1>タイムライン</h1>
-    <p style="color: var(--color-sub); margin-bottom: 2.5rem;">
-      {years[0]}年から{years[years.length - 1]}年まで、{events.length}回の軌跡。
-    </p>
+  <main class="container tl-main">
 
-    <div class="tl-wrap">
+    <div class="tl-header">
+      <h1>タイムライン</h1>
+      <p class="tl-sub">
+        {years[years.length - 1]}年から続く福島LOVE会の歩み。全{events.length}回。
+      </p>
+    </div>
+
+    <div class="tl-body">
       {years.map((year) => {
         const yearEvents = byYear.get(year)!;
         return (
-          <div class="tl-year-block">
-            <div class="tl-year-label">
-              <span class="tl-year-num">{year}</span>
-              <span class="tl-year-count">{yearEvents.length}回</span>
+          <section class="tl-year-section" id={`year-${year}`}>
+            <div class="tl-year-head">
+              <div class="tl-year-label">{year}</div>
+              <div class="tl-year-count">{yearEvents.length}回開催</div>
             </div>
-            <div class="tl-events">
-              {yearEvents.map((e) => (
-                <a
-                  href={`/events/${e.kai}/`}
-                  class={`tl-item${isMilestone(e.kai) ? ' tl-milestone' : ''}`}
-                >
-                  {e.photos.length > 0 && (
-                    <img class="tl-thumb" src={e.photos[0]} alt={`第${e.kai}回`} loading="lazy" />
-                  )}
-                  <div class="tl-info">
-                    <div class="tl-kai">
-                      {isMilestone(e.kai) && <span class="tl-milestone-badge">★</span>}
-                      第{e.kai}回
+            <div class="tl-cards">
+              {yearEvents.map((e) => {
+                const photos = getPhotos(e);
+                const milestone = isMilestone(e.kai);
+                return (
+                  <a href={`/events/${e.kai}/`} class={`tl-card${milestone ? ' tl-card-milestone' : ''}`}>
+                    {milestone && (
+                      <div class="tl-milestone-badge">第{e.kai}回記念</div>
+                    )}
+                    <div class="tl-card-thumb">
+                      {photos.length > 0
+                        ? <img
+                            src={photos[0]}
+                            alt={e.storeName}
+                            loading="lazy"
+                            data-photos={photos.length > 1 ? JSON.stringify(photos) : undefined}
+                          />
+                        : <span class="tl-card-no-thumb">🍶</span>
+                      }
                     </div>
-                    <div class="tl-store">{e.storeName}</div>
-                    {e.notes && <div class="tl-notes">{e.notes}</div>}
-                    <div class="tl-date">{formatDate(e.date)}</div>
-                  </div>
-                </a>
-              ))}
+                    <div class="tl-card-body">
+                      <div class="tl-card-kai">第{e.kai}回</div>
+                      <div class="tl-card-name">{e.storeName}</div>
+                      <div class="tl-card-date">{formatDate(e.date)}</div>
+                      {e.tags.genres.length > 0 && (
+                        <div class="tl-card-genres">
+                          {e.tags.genres.map((g) => <span class="tl-chip">{g}</span>)}
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
             </div>
-          </div>
+          </section>
         );
       })}
     </div>
+
   </main>
 </Base>
 
+<script>
+document.querySelectorAll('.tl-card-thumb img[data-photos]').forEach((img) => {
+  const el = img as HTMLImageElement;
+  const photos = JSON.parse(el.dataset.photos!);
+  if (photos.length > 1) {
+    el.src = photos[Math.floor(Math.random() * photos.length)];
+  }
+});
+</script>
+
 <style>
-.tl-wrap {
-  position: relative;
-  padding-left: 5rem;
+.tl-main {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
 }
 
-/* 縦線 */
-.tl-wrap::before {
-  content: '';
-  position: absolute;
-  left: 3.5rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--color-border);
-}
-
-/* 年ブロック */
-.tl-year-block {
-  position: relative;
+.tl-header {
   margin-bottom: 2.5rem;
+  border-bottom: 3px solid #111;
+  padding-bottom: 1rem;
 }
 
-/* 年ラベル */
-.tl-year-label {
-  position: absolute;
-  left: -5rem;
-  top: 0;
-  width: 4.2rem;
+.tl-sub {
+  color: var(--color-sub);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.tl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* 年セクション: 左に年ラベル、右にカードグリッド */
+.tl-year-section {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.tl-year-head {
+  position: sticky;
+  top: 3.5rem;
   text-align: right;
-  padding-right: 0.75rem;
+  padding-right: 1.25rem;
+  border-right: 3px solid var(--color-accent);
 }
 
-.tl-year-num {
-  display: block;
-  font-size: 1.1rem;
+.tl-year-label {
+  font-size: 1.6rem;
   font-weight: 900;
-  color: var(--color-ink);
-  line-height: 1.2;
+  color: #111;
+  line-height: 1;
 }
 
 .tl-year-count {
-  display: block;
   font-size: 0.72rem;
-  color: var(--color-muted);
-  margin-top: 0.1rem;
+  color: var(--color-sub);
+  margin-top: 0.25rem;
+  font-weight: 600;
 }
 
-/* 年ブロック先頭の丸 */
-.tl-year-block::before {
-  content: '';
-  position: absolute;
-  left: -1.65rem;
-  top: 0.35rem;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 2px var(--color-accent);
+/* カードグリッド */
+.tl-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
 }
 
-/* イベント一覧 */
-.tl-events {
+/* カード */
+.tl-card {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-}
-
-/* 各イベント行 */
-.tl-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
-  border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  background: var(--color-card);
+  border-radius: 6px;
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow var(--transition), background var(--transition);
+  background: #fff;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
 
-.tl-item:hover {
-  box-shadow: var(--shadow-hover);
-  background: #fdf5f4;
+.tl-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  text-decoration: none;
 }
 
-/* 節目回 */
-.tl-item.tl-milestone {
-  border-color: var(--color-accent);
-  background: rgba(230, 51, 41, 0.04);
+/* サムネイル（4:3アスペクト比） */
+.tl-card-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-surface-2, #f3f3f3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.tl-item.tl-milestone:hover {
-  background: rgba(230, 51, 41, 0.08);
-}
-
-/* サムネイル */
-.tl-thumb {
-  width: 52px;
-  height: 52px;
+.tl-card-thumb img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 6px;
-  flex-shrink: 0;
+  display: block;
 }
 
-/* 情報 */
-.tl-info {
-  flex: 1;
-  min-width: 0;
+.tl-card-no-thumb {
+  font-size: 1.8rem;
 }
 
-.tl-kai {
-  font-size: 0.75rem;
+/* カード本文 */
+.tl-card-body {
+  padding: 0.5rem 0.6rem 0.6rem;
+}
+
+.tl-card-kai {
+  font-size: 0.7rem;
+  color: var(--color-accent);
   font-weight: 700;
-  color: var(--color-muted);
   margin-bottom: 0.1rem;
 }
 
-.tl-milestone-badge {
-  color: var(--color-accent);
-  margin-right: 0.2em;
-}
-
-.tl-store {
+.tl-card-name {
   font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--color-ink);
-  white-space: nowrap;
+  font-size: 0.85rem;
+  line-height: 1.3;
   overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.tl-notes {
-  font-size: 0.8rem;
+.tl-card-date {
+  font-size: 0.72rem;
   color: var(--color-sub);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-top: 0.1rem;
+  margin-top: 0.2rem;
 }
 
-.tl-date {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  margin-top: 0.15rem;
+.tl-card-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  margin-top: 0.3rem;
+}
+
+.tl-chip {
+  font-size: 0.65rem;
+  padding: 0.1em 0.45em;
+  border-radius: 999px;
+  background: var(--color-surface, #f3f3f3);
+  border: 1px solid var(--color-border, #e0e0e0);
+  color: var(--color-ink, #222);
+}
+
+/* 節目回: 2列分の幅・横並び・赤ボーダー */
+.tl-card-milestone {
+  border: 2px solid var(--color-accent);
+  position: relative;
+  grid-column: span 2;
+  flex-direction: row;
+}
+
+.tl-card-milestone .tl-card-thumb {
+  width: 140px;
+  flex-shrink: 0;
+  aspect-ratio: unset;
+  height: auto;
+  min-height: 110px;
+}
+
+.tl-card-milestone .tl-card-body {
+  padding: 0.75rem;
+}
+
+.tl-card-milestone .tl-card-name {
+  font-size: 1rem;
+  -webkit-line-clamp: 3;
+}
+
+.tl-milestone-badge {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15em 0.55em;
+  border-radius: 3px;
+  z-index: 1;
 }
 
 /* モバイル */
-@media (max-width: 480px) {
-  .tl-wrap {
-    padding-left: 3.5rem;
+@media (max-width: 640px) {
+  .tl-year-section {
+    grid-template-columns: 70px 1fr;
+    gap: 0.75rem;
   }
-  .tl-wrap::before {
-    left: 2.5rem;
+  .tl-year-head {
+    padding-right: 0.75rem;
+    top: 3rem;
   }
   .tl-year-label {
-    left: -3.5rem;
-    width: 3rem;
-    padding-right: 0.5rem;
+    font-size: 1.1rem;
   }
-  .tl-year-num {
-    font-size: 0.85rem;
+  .tl-cards {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.5rem;
   }
-  .tl-year-block::before {
-    left: -1.15rem;
+  .tl-card-milestone {
+    grid-column: span 2;
+    flex-direction: column;
   }
-  .tl-thumb {
-    width: 40px;
-    height: 40px;
+  .tl-card-milestone .tl-card-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: unset;
   }
 }
 </style>
