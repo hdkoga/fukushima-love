@@ -4,14 +4,17 @@ import { getEnrichedEvents, formatDate } from '../lib/data';
 
 const events = await getEnrichedEvents();
 
-// 年ごとにグループ化（昇順）
+// 年ごとにグループ化（年は降順、年内は新しい順）
 const byYear = new Map<number, typeof events>();
-for (const e of [...events].reverse()) {
+for (const e of events) {
   const m = e.date.match(/(\d{4})/);
   if (!m) continue;
   const year = Number(m[1]);
   if (!byYear.has(year)) byYear.set(year, []);
   byYear.get(year)!.push(e);
+}
+for (const evts of byYear.values()) {
+  evts.sort((a, b) => b.kai - a.kai);
 }
 const years = [...byYear.keys()].sort((a, b) => b - a);
 
