@@ -46,10 +46,97 @@ python scripts/fukushima-love/04_geocode.py
 ```
 （`03_update_sheet.py` は任意。シートに書き戻さなくても `posts_by_kai.json` からビルド可能）
 
+## 新規開催追加手順
+
+スプレッドシートに新しい回を入力しただけでは、**Facebook投稿のメタ情報や写真は自動ではサイトに反映されない**。以下の手順でデータを更新し、GitHubにpushする必要がある。
+
+### 前提：GitHub認証（SSHキー）
+
+このPCからGitHubにpushするには、初回にSSHキーを生成・登録する必要がある。
+
+```bash
+# 1. SSHキー生成（このPCで1回だけ）
+ssh-keygen -t ed25519 -C "hdkoga@github" -f ~/.ssh/id_ed25519 -N ""
+
+# 2. 公開鍵を表示 → https://github.com/settings/keys に登録
+cat ~/.ssh/id_ed25519.pub
+```
+
+別のPCで既にpushしていた場合、このPCには認証情報がないため、同じ手順が必要になる。
+
+### 全体像
+
+```
+[飲み会開催]
+    ↓
+[スプレッドシートに新規行を入力]
+    ↓
+[FBグループに投稿]
+    ↓
+[01_fetch_posts.py] ← FB投稿を取得・更新
+    ↓
+[02_match_by_kai_number.py] ← 回番号とFB投稿を紐付け
+    ↓
+[04_geocode.py] ← 新規住所の緯度経度を取得（既存ならスキップ可）
+    ↓
+[05_download_photos.py --kai {回番号}] ← FB投稿写真をダウンロード
+    ↓
+[git add / commit / push] → origin/main
+    ↓
+[Cloudflare Pages: 自動ビルド]
+    ↓
+[公開URL で最新反映]
+```
+
+### Step A: FB投稿の取得（新規投稿がある場合）
+
+```bash
+# リポジトリルートから
+python scripts/fukushima-love/01_fetch_posts.py --since {YYYY-MM-DD}
+# ※FBセッション切れの場合は --login を付けて手動ログイン
+```
+
+### Step B: 回番号とFB投稿を紐付け
+
+```bash
+python scripts/fukushima-love/02_match_by_kai_number.py
+```
+
+出力された `src/data/posts_by_kai.json` を確認し、新しい回の `post_url` や `text_snippet` が正しく入っているかチェックする。手動修正が必要な場合は直接JSONを編集してよい。
+
+### Step C: ジオコーディング（新規住所がある場合）
+
+```bash
+python scripts/fukushima-love/04_geocode.py
+```
+
+既にキャッシュに存在する住所はスキップされる。失敗した住所は手動で `src/data/geocode_cache.json` に追加するか、正確な住所に修正して再実行する。
+
+### Step D: 写真のダウンロード
+
+```bash
+# 特定の回だけ
+python scripts/fukushima-love/05_download_photos.py --kai {回番号}
+
+# 未処理の回をすべて
+python scripts/fukushima-love/05_download_photos.py --resume
+```
+
+### Step E: コミット＆push
+
+```bash
+git add src/data/posts_by_kai.json src/data/photos_manifest.json public/photos/{回番号}/
+git commit -m "feat: 第{回番号}回 {店名} を追加"
+git push origin main
+```
+
+push後、Cloudflare Pagesが自動的に再ビルドする（通常1〜3分）。
+
 ## デプロイ手順（Phase C）
 
 ### 全体像
 
+**スプレッドシートのみ変更した場合（開催日・店名・住所等の修正）:**
 ```
 [Googleスプレッドシート更新]
        ↓
@@ -61,6 +148,21 @@ python scripts/fukushima-love/04_geocode.py
        ↓
 [公開URL で最新反映]
 ```
+
+**新しい回を追加した場合（FB投稿・写真も必要）:**
+```
+[スプレッドシートに新規行入力] + [FBグループに投稿]
+       ↓
+[01_fetch_posts.py → 02_match_by_kai_number.py → 05_download_photos.py]
+       ↓
+[git commit & push origin main]
+       ↓
+[Cloudflare Pages: GitHubリポジトリをビルド]
+       ↓
+[公開URL で最新反映]
+```
+
+※スプレッドシート更新だけでは、`posts_by_kai.json` や `photos_manifest.json` は更新されない。新規開催を追加する際は必ず「新規開催追加手順」を実行すること。
 
 ### Step 1: スプレッドシートを「ウェブに公開」
 
@@ -150,6 +252,11 @@ Facebookグループのお知らせにサイトURLを固定。
 **地図にピンが表示されない**
 - `src/data/geocode_cache.json` が空なら `04_geocode.py` を実行
 - 失敗住所は手動で `{"lat": ..., "lon": ..., "status": "ok"}` を追加
+
+**GitHub pushができない（Permission denied / 403）**
+- このPCにSSH秘密鍵がない可能性がある。`ls ~/.ssh/id_*` で確認
+- 鍵がない場合は「新規開催追加手順 → 前提：GitHub認証（SSHキー）」の手順で生成・登録
+- 別のPCでpushしていた場合、このPCには認証情報がないため、同じ設定が必要
 
 ## 構成
 
