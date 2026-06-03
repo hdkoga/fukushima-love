@@ -333,7 +333,7 @@ const nextEvent = nextKai != null ? allEvents.find((e) => e.kai === nextKai) : n
       </section>
     )}
 
-    {!event.post?.post_url && (
+    {!event.post?.post_url && (!event.photos || event.photos.length === 0) && (
       <section>
         <h2>当日の写真・様子</h2>
         <p class="empty-hint">
